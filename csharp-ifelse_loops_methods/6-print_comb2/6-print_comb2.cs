@@ -9,7 +9,7 @@ class Program
             for (int secondDigit = firstDigit + 1; secondDigit <= 9; secondDigit++)
             {
                 Console.Write($"{firstDigit}{secondDigit}");
-                if (firstDigit < 9 || secondDigit < 9)
+                if (!(firstDigit == 8 && secondDigit == 9))
                 {
                     Console.Write(", ");
                 }
