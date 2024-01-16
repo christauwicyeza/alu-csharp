@@ -6,12 +6,7 @@ class Program
     {
         for (int i = 0; i <= 98; i++)
         {
-            Console.Write($"{i} {i:X}");
-            if (i < 98)
-            {
-                Console.Write(" ");
-            }
+            Console.Write($"{i} {(i < 98 ? " " : "\n")}{i:X}");
         }
-        Console.WriteLine();
     }
 }
