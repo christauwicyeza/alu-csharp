@@ -10,4 +10,3 @@ class Program
 		Console.WriteLine($"{number} Mission Street");
 	}
 }
-
