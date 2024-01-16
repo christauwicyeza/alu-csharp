@@ -6,7 +6,7 @@ class Program
     {
         for (int i = 0; i < 99; i++)
         {
-            Console.WriteLine($"{i} = 0x{i:X}");
+            Console.Write($"{i} {(i < 98 ? "," : "\n")}");
         }
     }
 }
