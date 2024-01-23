@@ -19,9 +19,9 @@ public class Array
     }
 }
 
-class Program
+public class ArrayProgram
 {
-    static void Main(string[] args)
+    public static void Main(string[] args)
     {
         // Example usage
         int[] myArray = { 1, 2, 3, 4, 5 };
