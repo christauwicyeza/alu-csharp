@@ -1,24 +1,44 @@
-﻿using System.Collections;
+﻿using System;
 
-class Array{
+public class Array
+{
+    public static void Reverse(int[] array)
+    {
+        if (array == null)
+        {
+            Console.WriteLine("Array is null");
+            return;
+        }
 
-    public static void Reverse(int[] array){
-     
-       if(array != null){
-            int size = array.Length;
-        if(size > 0 && size != null){
+        for (int i = array.Length - 1; i >= 0; i--)
+        {
+            Console.Write(array[i] + " ");
+        }
 
-            for(int i = size - 1; i >= 0; i--){
-                Console.Write(array[i] + " ");
-                }
-                    Console.WriteLine();
-             }else{
-                Console.WriteLine();
-             }
-       }else{
         Console.WriteLine();
-       }
-       
-     
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        // Example usage
+        int[] myArray = { 1, 2, 3, 4, 5 };
+
+        Console.WriteLine("Original Array:");
+        PrintArray(myArray);
+
+        Console.WriteLine("Reversed Array:");
+        Array.Reverse(myArray);
+    }
+
+    static void PrintArray(int[] array)
+    {
+        foreach (var element in array)
+        {
+            Console.Write(element + " ");
+        }
+        Console.WriteLine();
     }
 }
