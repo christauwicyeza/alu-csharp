@@ -6,16 +6,16 @@ class List{
             Console.WriteLine("List is empty");
             return -1;
         }else{
-                int largestSoFar = myList[0];
+                int maxValue = myList[0];
 
                 foreach(int temp in myList){
 
-                    if(temp > largestSoFar){
-                        largestSoFar = temp;
+                    if(temp > maxValue){
+                        maxValue = temp;
                     }
             }
 
-             return largestSoFar;
+             return maxValue;
         }
 
         
