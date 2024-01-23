@@ -16,17 +16,11 @@ public class List
         for (int i = 0; i < size; i++)
         {
             numberList.Add(i);
-            Console.Write(i);
-
-            // Add a space after each element except the last one
-            if (i < size - 1)
-            {
-                Console.Write(" ");
-            }
+            Console.Write(i + " ");
         }
 
         Console.WriteLine();
-        Console.WriteLine("List Length: " + numberList.Count);
+        Console.WriteLine($"List Length: {numberList.Count}$"); // Print the list length once
         return numberList;
     }
 }
