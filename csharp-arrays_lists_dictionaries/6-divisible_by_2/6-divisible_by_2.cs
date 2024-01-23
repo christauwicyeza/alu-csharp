@@ -1,19 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 class ListMethods
 {
-    public static List<bool> DivisibleBy2(List<int> myList)
+    public static List<bool> CheckMultiplesOf2(List<int> inputList)
     {
-        if (myList == null)
-        {
-            Console.WriteLine("Input list is null");
-            return null;
-        }
-
         List<bool> result = new List<bool>();
 
-        foreach (int number in myList)
+        foreach (int number in inputList)
         {
             bool isMultipleOf2 = (number % 2 == 0);
             result.Add(isMultipleOf2);
