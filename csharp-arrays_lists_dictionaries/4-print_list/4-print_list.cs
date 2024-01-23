@@ -13,6 +13,10 @@ class List{
                 Console.Write(i + " ");
                 CacheList.Add(i);
             }
+            if (i < size - 1)
+            {
+                Console.Write(" ");
+            }
             Console.WriteLine();
             return CacheList;
         }
