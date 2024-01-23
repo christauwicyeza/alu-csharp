@@ -16,7 +16,7 @@ public class List
         for (int i = 0; i < size; i++)
         {
             numberList.Add(i);
-            Console.Write(i);
+            Console.Write(i + " ");
         }
 
         if (i < size - 1)
