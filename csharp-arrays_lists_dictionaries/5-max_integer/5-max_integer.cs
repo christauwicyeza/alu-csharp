@@ -1,32 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections;
 
-class ListMethods
-{
-    public static int MaxInteger(List<int> myList)
-    {
-        if (myList == null)
-        {
-            Console.WriteLine("Input list is null");
-            return -1;
-        }
-
-        if (myList.Count == 0)
-        {
+class List{
+    public static int MaxInteger(List<int> myList){
+        if(myList.Count <= 0){
             Console.WriteLine("List is empty");
-            return myList.Count; // Return list length when it's empty
-        }
+            return -1;
+        }else{
+                int largestSoFar = myList[0];
 
-        int max = myList[0];
+                foreach(int temp in myList){
 
-        for (int i = 1; i < myList.Count; i++)
-        {
-            if (myList[i] > max)
-            {
-                max = myList[i];
+                    if(temp > largestSoFar){
+                        largestSoFar = temp;
+                    }
             }
+
+             return largestSoFar;
         }
 
-        return max;
-    }
+        
+     }
 }
