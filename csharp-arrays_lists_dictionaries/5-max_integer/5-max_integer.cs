@@ -14,21 +14,19 @@ class ListMethods
         if (myList.Count == 0)
         {
             Console.WriteLine("List is empty");
-            return -1;
+            return myList.Count; // Return list length when it's empty
         }
 
         int max = myList[0];
 
         for (int i = 1; i < myList.Count; i++)
         {
-            Console.Write(myList[i]);
             if (myList[i] > max)
             {
                 max = myList[i];
             }
         }
 
-        Console.WriteLine();
         return max;
     }
 }
