@@ -19,6 +19,11 @@ public class List
             Console.Write(i + " ");
         }
 
+        if (i < size - 1)
+            {
+                Console.Write(" ");
+            }
+
         Console.WriteLine();
         return numberList;
     }
