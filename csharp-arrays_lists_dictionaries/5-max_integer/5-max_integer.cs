@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-public class ListMethods
+class ListMethods
 {
     public static int MaxInteger(List<int> myList)
     {
@@ -19,14 +19,16 @@ public class ListMethods
 
         int max = myList[0];
 
-        foreach (int number in myList)
+        for (int i = 0; i < myList.Count; i++)
         {
-            if (number > max)
+            Console.Write(myList[i]);
+            if (myList[i] > max)
             {
-                max = number;
+                max = myList[i];
             }
         }
 
+        Console.WriteLine();
         return max;
     }
 }
