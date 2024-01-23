@@ -20,7 +20,7 @@ public class List
         }
 
         Console.WriteLine();
-        Console.Write($"List Length: {numberList.Count}$"); // Print the list length once
+        Console.Write($ {numberList.Count}); // Print the list length once
         return numberList;
     }
 }
