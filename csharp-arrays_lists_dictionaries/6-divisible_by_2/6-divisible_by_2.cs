@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-class ListHelper
+class MyList
 {
     public static List<bool> CheckMultiplesOf2(List<int> myList)
     {
