@@ -17,10 +17,7 @@ public class Array
 
         Console.WriteLine();
     }
-}
 
-class Program
-{
     static void Main(string[] args)
     {
         // Example usage
@@ -30,7 +27,7 @@ class Program
         PrintArray(myArray);
 
         Console.WriteLine("Reversed Array:");
-        Array.Reverse(myArray);
+        Reverse(myArray);
     }
 
     static void PrintArray(int[] array)
