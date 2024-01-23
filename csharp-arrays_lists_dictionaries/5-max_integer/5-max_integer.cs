@@ -3,21 +3,30 @@ using System.Collections.Generic;
 
 public class ListMethods
 {
-    public static List<bool> DivisibleBy2(List<int> myList)
+    public static int MaxInteger(List<int> myList)
     {
         if (myList == null)
         {
             Console.WriteLine("Input list is null");
-            return null;
+            return -1;
         }
 
-        List<bool> result = new List<bool>();
+        if (myList.Count == 0)
+        {
+            Console.WriteLine("List is empty");
+            return -1;
+        }
+
+        int max = myList[0];
 
         foreach (int number in myList)
         {
-            result.Add(number % 2 == 0);
+            if (number > max)
+            {
+                max = number;
+            }
         }
 
-        return result;
+        return max;
     }
 }
