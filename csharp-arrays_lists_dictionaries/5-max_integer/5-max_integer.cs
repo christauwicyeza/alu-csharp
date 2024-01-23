@@ -19,7 +19,7 @@ class ListMethods
 
         int max = myList[0];
 
-        for (int i = 0; i < myList.Count; i++)
+        for (int i = 1; i < myList.Count; i++)
         {
             Console.Write(myList[i]);
             if (myList[i] > max)
