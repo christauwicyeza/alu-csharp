@@ -1,14 +1,32 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections.Generic;
 
-class Dictionary{
-
-
-    public static int NumberOfKeys(Dictionary<string, string> myDict){
-        int count = 0;
-        foreach(var key in myDict){
-            count++;
+public class ListManipulator
+{
+    public static List<int> DeleteAt(List<int> myList, int index)
+    {
+        if (index < 0 || index >= myList.Count)
+        {
+            Console.WriteLine("Index is out of range");
+            return myList;
         }
 
-        return count;
+        List<int> updatedList = new List<int>();
+
+        for (int i = 0; i < myList.Count; i++)
+        {
+            if (i != index)
+            {
+                updatedList.Add(myList[i]);
+            }
+        }
+
+        myList.Clear();
+        foreach (var item in updatedList)
+        {
+            myList.Add(item);
+        }
+
+        return myList;
     }
 }
