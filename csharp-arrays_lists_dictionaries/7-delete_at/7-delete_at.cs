@@ -16,6 +16,7 @@ class List
                 else
                     CacheList.Add(myList[i]);
             }
+            Console.WriteLine("Index is within range");
             return CacheList;
         }
         else
