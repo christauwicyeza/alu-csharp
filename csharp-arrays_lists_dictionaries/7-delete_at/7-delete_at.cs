@@ -9,15 +9,18 @@ class List{
         if(index >= 0 && index < ListSize){
             for(int i = 0; i < ListSize; i++){
                 if(i == index){
-               
-               continue;
+                    Console.WriteLine("Value o index is : " + index + " and value of i : " + i) ;
+                   Console.WriteLine("index found");
+                    continue;
                 }else{
-                       // Console.WriteLine("Adding the number : " + myList[i]);
+                       Console.WriteLine("Adding the number : " + myList[i]);
                         CacheList.Add(myList[i]);
                 }
             
             }
-    
+            foreach(int temp in CacheList){
+                    Console.WriteLine("Printing the cache list elements " + temp);
+            }
 
             return CacheList;
         }else{
