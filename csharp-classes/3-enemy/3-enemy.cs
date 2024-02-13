@@ -31,11 +31,4 @@ namespace Enemies {
             health = value;
         }
     }
-
-    public class Program {
-        static void Main(string[] args) {
-            // Main method, entry point of the program
-            Console.WriteLine("Hello from the Main method!");
-        }
-    }
 }
