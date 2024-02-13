@@ -1,7 +1,6 @@
 obj/
-0-enemy.deps.json
-0-enemy.dll
-0-enemy.exe
-0-enemy.pdb
-0-enemy.runtimeconfig.json
-
+*deps.json
+*.dll
+*.exe
+*.pdb
+*.runtimeconfig.json
