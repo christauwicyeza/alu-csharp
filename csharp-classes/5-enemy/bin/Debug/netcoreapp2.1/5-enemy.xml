@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>5-enemy</name>
+    </assembly>
+    <members>
+        <member name="T:Enemies.Zombie">
+            <summary>
+            Zombie is a public class 
+            </summary>
+        </member>
+        <member name="P:Enemies.Zombie.Name">
+            <summary>
+            Name sets and gets the local name variable
+            </summary>
+        </member>
+        <member name="M:Enemies.Zombie.#ctor">
+            <summary>
+            Zombie Constructor inits health to zero
+            </summary>
+        </member>
+        <member name="M:Enemies.Zombie.#ctor(System.Int32)">
+            <summary>
+            Zombie Constructor inits only for int greater than or equal to zero
+            </summary>
+            <param name="value"></param>
+            <exception cref="T:System.ArgumentException"></exception>
+        </member>
+        <member name="M:Enemies.Zombie.ToString">
+            <summary>
+            ToString  prints Zombie details
+            </summary>
+            <returns> string </returns>
+        </member>
+        <member name="M:Enemies.Zombie.GetHealth">
+            <summary>
+            Method returns health local variable
+            </summary>
+            <returns>health</returns>
+        </member>
+    </members>
+</doc>
