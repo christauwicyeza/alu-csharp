@@ -1,11 +1,10 @@
 ﻿﻿using System;
 
-namespace Enemies{
+namespace Enemies {
     /// <summary>
-    ///  zombie is an empty class
+    ///  Zombie is an empty class
     /// </summary>
-
-    public class Zombie{
+    public class Zombie {
 
     }
 }
