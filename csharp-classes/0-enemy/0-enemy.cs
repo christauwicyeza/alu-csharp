@@ -1,12 +1,11 @@
-﻿using System;
+﻿﻿using System;
 
-namespace Enemies
-{
+namespace Enemies{
     /// <summary>
-    /// Represents a zombie enemy.
+    ///  zombie is an empty class
     /// </summary>
-    public class Zombie
-    {
-        // This class is currently empty.
+
+    public class Zombie{
+
     }
 }
