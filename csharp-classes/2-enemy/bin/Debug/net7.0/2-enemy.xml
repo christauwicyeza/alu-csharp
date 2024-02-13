@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>2-enemy</name>
+    </assembly>
+    <members>
+        <member name="T:Enemies.Zombie">
+            <summary>
+            Zombie is a public class 
+            </summary>
+        </member>
+        <member name="F:Enemies.Zombie.health">
+            <summary>
+            Holds the value of health
+            </summary>
+        </member>
+        <member name="M:Enemies.Zombie.#ctor">
+            <summary>
+            Zombie Constructor inits health to zero
+            </summary>
+        </member>
+        <member name="M:Enemies.Zombie.#ctor(System.Int32)">
+            <summary>
+            Zombie Constructor inits only for int greater than or equal to zero
+            </summary>
+            <param name="value">The initial health value</param>
+            <exception cref="T:System.ArgumentException">Thrown when the provided value is less than 0</exception>
+        </member>
+    </members>
+</doc>
