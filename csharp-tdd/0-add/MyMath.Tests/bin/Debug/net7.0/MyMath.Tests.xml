@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MyMath.Tests</name>
+    </assembly>
+    <members>
+        <member name="M:Tests.Test_NumberAddition.AdditionOperation">
+            <summary>
+            Test if addition of two numbers is 4
+            </summary>
+        </member>
+    </members>
+</doc>
