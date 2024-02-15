@@ -4,13 +4,18 @@
         <name>MyMath</name>
     </assembly>
     <members>
+        <member name="T:MyMath.Operations">
+            <summary>
+            Provides arithmetic operations.
+            </summary>
+        </member>
         <member name="M:MyMath.Operations.Add(System.Int32,System.Int32)">
             <summary>
-            Returns addition of two integers
+            Adds two integers and returns the sum.
             </summary>
-            <param name="a"></param>
-            <param name="b"></param>
-            <returns></returns>
+            <param name="a">First integer to add.</param>
+            <param name="b">Second integer to add.</param>
+            <returns>The sum of the two integers.</returns>
         </member>
     </members>
 </doc>

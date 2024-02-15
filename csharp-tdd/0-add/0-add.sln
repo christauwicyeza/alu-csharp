@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMath", "MyMath\MyMath.csproj", "{0790BCE9-E59C-453A-A58D-E4756D97DEED}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMath", "MyMath\MyMath.csproj", "{480BA766-DAAD-4F55-8800-B49202120717}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMath.Tests", "MyMath.Tests\MyMath.Tests.csproj", "{39197F50-1291-490F-816E-08075B269CEA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMath.Tests", "MyMath.Tests\MyMath.Tests.csproj", "{3C743F2E-8953-426C-BB1F-114DBDEE9566}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -16,13 +16,13 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0790BCE9-E59C-453A-A58D-E4756D97DEED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0790BCE9-E59C-453A-A58D-E4756D97DEED}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0790BCE9-E59C-453A-A58D-E4756D97DEED}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0790BCE9-E59C-453A-A58D-E4756D97DEED}.Release|Any CPU.Build.0 = Release|Any CPU
-		{39197F50-1291-490F-816E-08075B269CEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{39197F50-1291-490F-816E-08075B269CEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{39197F50-1291-490F-816E-08075B269CEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{39197F50-1291-490F-816E-08075B269CEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{480BA766-DAAD-4F55-8800-B49202120717}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{480BA766-DAAD-4F55-8800-B49202120717}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{480BA766-DAAD-4F55-8800-B49202120717}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{480BA766-DAAD-4F55-8800-B49202120717}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C743F2E-8953-426C-BB1F-114DBDEE9566}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C743F2E-8953-426C-BB1F-114DBDEE9566}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C743F2E-8953-426C-BB1F-114DBDEE9566}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C743F2E-8953-426C-BB1F-114DBDEE9566}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
