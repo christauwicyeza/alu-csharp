@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MyMath</name>
+    </assembly>
+    <members>
+        <member name="M:MyMath.Operations.Max(System.Collections.Generic.List{System.Int32})">
+            <summary>
+            Returns largest integer of a list
+            </summary>
+            <param name="nums"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
