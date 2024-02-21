@@ -11,7 +11,6 @@ class Obj
         Console.WriteLine($"{t.Name} Properties:");
 
         // Assuming no properties are expected for Int32 as per given output
-        // Console.WriteLine($"{t.Name} Properties:");
 
         // Define a list of expected method names
         var expectedMethodNames = new HashSet<string>
@@ -21,19 +20,16 @@ class Obj
         };
 
         Console.WriteLine($"{t.Name} Methods:");
-        foreach (MethodInfo method in t.GetMethods())
-        {
-            // Check if the method is in the expected list and not a duplicate; considering ToString and others may have overloads
-            if (expectedMethodNames.Contains(method.Name) && method.DeclaringType == typeof(int))
-            {
-                Console.WriteLine(method.Name);
-            }
-        }
+        
+        // Filter and select methods based on the expected list, excluding duplicates
+        var methods = t.GetMethods().Where(m => expectedMethodNames.Contains(m.Name))
+                                     .GroupBy(m => m.Name)
+                                     .Select(g => g.First()) // This takes the first occurrence of each method name
+                                     .OrderBy(m => m.Name); // Optional, to have a consistent order
 
-        // Explicitly handle the GetType method since it's inherited from System.Object
-        if (expectedMethodNames.Contains("GetType"))
+        foreach (MethodInfo method in methods)
         {
-            Console.WriteLine("GetType");
+            Console.WriteLine(method.Name);
         }
     }
 }
