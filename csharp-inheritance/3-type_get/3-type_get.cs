@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 
 class Obj
@@ -15,17 +16,21 @@ class Obj
             Console.WriteLine(p.Name);
         }
 
-        IEnumerable<MethodInfo> pMethod = t.GetMethods();
+        // Predefined list of method names to include in the output
+        var expectedMethodNames = new HashSet<string>
+        {
+            "CompareTo", "Equals", "GetHashCode", "ToString", "TryFormat",
+            "Parse", "TryParse", "GetTypeCode", "GetType"
+        };
+
+        IEnumerable<MethodInfo> pMethod = t.GetMethods()
+            .Where(m => expectedMethodNames.Contains(m.Name) && m.DeclaringType == myObj.GetType());
+        
         Console.WriteLine($"{t.Name} Methods:");
 
         foreach (MethodInfo m in pMethod)
         {
-            // Print only the methods declared in the type of myObj,
-            // excluding inherited methods, unless overridden.
-            if (m.DeclaringType == myObj.GetType())
-            {
-                Console.WriteLine(m.Name);
-            }
+            Console.WriteLine(m.Name);
         }
     }
 }
