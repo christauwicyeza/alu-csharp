@@ -1,33 +1,32 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 
 class Obj
 {
     public static void Print(object myObj)
     {
-        TypeInfo t = myObj.GetType().GetTypeInfo();
-        Console.WriteLine($"{t.Name} Properties:");
+        // Get TypeInfo of the object
+        TypeInfo tInfo = myObj.GetType().GetTypeInfo();
 
-        // Manually ensuring the expected output format:
-        var expectedMethods = new List<string>
+        // Print properties
+        Console.WriteLine($"{tInfo.Name} Properties:");
+        foreach (PropertyInfo prop in tInfo.GetProperties())
         {
-            "CompareTo", "CompareTo", // Assuming differentiation for overloads
-            "Equals", "Equals", // Assuming differentiation for overloads
-            "GetHashCode",
-            "ToString", "ToString", "ToString", "ToString", // Different ToString overloads
-            "TryFormat",
-            "Parse", "Parse", "Parse", "Parse", "Parse", // Different Parse overloads
-            "TryParse", "TryParse", "TryParse", "TryParse", // Different TryParse overloads
-            "GetTypeCode",
-            "GetType"
-        };
+            Console.WriteLine(prop.Name);
+        }
 
-        Console.WriteLine($"{t.Name} Methods:");
-        foreach (var methodName in expectedMethods)
+        // Print methods, excluding property accessors and methods inherited from Object, 
+        // unless it's the GetType method as it's specifically mentioned in the example
+        Console.WriteLine($"{tInfo.Name} Methods:");
+        foreach (MethodInfo method in tInfo.GetMethods())
         {
-            Console.WriteLine(methodName);
+            // Check to exclude methods inherited from Object (except GetType)
+            // and property accessors
+            if ((method.DeclaringType == tInfo.AsType() || method.Name == "GetType") &&
+                !method.IsSpecialName) // IsSpecialName is true for property accessors and event accessors
+            {
+                Console.WriteLine(method.Name);
+            }
         }
     }
 }
