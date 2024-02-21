@@ -1,22 +1,4 @@
-﻿using System;
-
-public class Program
-{
-    public static void Main(string[] args)
-    {
-        // Create an instance of Rectangle
-        Rectangle myRectangle = new Rectangle();
-
-        // Set width and height
-        myRectangle.Width = 5;
-        myRectangle.Height = 10;
-
-        // Calculate and display area
-        Console.WriteLine($"The area of the rectangle is: {myRectangle.Area()}");
-
-        // Display rectangle information using ToString
-        Console.WriteLine(myRectangle.ToString());
-    }
+﻿
 using System;
 
 
@@ -91,5 +73,4 @@ public class Rectangle : Shape{
 
         return $"[Rectangle] {width} / {height}";
     }
-}
 }
