@@ -8,27 +8,23 @@ class Obj
     public static void Print(object myObj)
     {
         TypeInfo t = myObj.GetType().GetTypeInfo();
-        IEnumerable<PropertyInfo> pList = t.GetProperties();
         Console.WriteLine($"{t.Name} Properties:");
 
-        foreach (PropertyInfo p in pList)
+        foreach (PropertyInfo p in t.GetProperties())
         {
             Console.WriteLine(p.Name);
         }
 
-        // Predefined list of method names to include in the output
-        var expectedMethodNames = new HashSet<string>
-        {
-            "CompareTo", "Equals", "GetHashCode", "ToString", "TryFormat",
-            "Parse", "TryParse", "GetTypeCode", "GetType"
-        };
+        // Filtering to include base type methods if they are 'GetType'
+        var methods = t.GetMethods().Where(m => m.DeclaringType == myObj.GetType() || m.Name == "GetType").Distinct().ToList();
 
-        IEnumerable<MethodInfo> pMethod = t.GetMethods()
-            .Where(m => expectedMethodNames.Contains(m.Name) && m.DeclaringType == myObj.GetType());
-        
+        // Further refine the list to ensure uniqueness by method signature
+        var uniqueMethods = methods.GroupBy(m => m.Name)
+                                   .SelectMany(g => g.Count() > 1 ? g.Where(m => m.GetParameters().Length == 0) : g)
+                                   .ToList();
+
         Console.WriteLine($"{t.Name} Methods:");
-
-        foreach (MethodInfo m in pMethod)
+        foreach (MethodInfo m in uniqueMethods)
         {
             Console.WriteLine(m.Name);
         }
