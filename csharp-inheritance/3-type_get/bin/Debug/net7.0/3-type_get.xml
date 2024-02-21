@@ -4,11 +4,5 @@
         <name>3-type_get</name>
     </assembly>
     <members>
-        <member name="M:Obj.Print(System.Object)">
-            <summary>
-            Prints the names of the available properties and methods of an object.
-            </summary>
-            <param name="myObj">The object to inspect.</param>
-        </member>
     </members>
 </doc>
