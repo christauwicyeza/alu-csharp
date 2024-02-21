@@ -1,35 +1,63 @@
 ﻿using System;
-using System.Linq;
+using System.Collections.Generic;
 using System.Reflection;
 
 public class Obj
 {
     public static void Print(object myObj)
     {
-        if (myObj == null)
-        {
-            Console.WriteLine("The object is null");
-            return;
-        }
-
-        // Getting the type information of the object
         Type type = myObj.GetType();
         Console.WriteLine($"{type.Name} Properties:");
-
-        // Getting and printing all public properties of the object
-        PropertyInfo[] properties = type.GetProperties();
-        foreach (var property in properties)
+        
+        foreach (PropertyInfo property in type.GetProperties())
         {
             Console.WriteLine(property.Name);
         }
 
         Console.WriteLine($"{type.Name} Methods:");
-        // Getting and printing all public methods of the object, including inherited methods
-        MethodInfo[] methods = type.GetMethods().Where(m => m.DeclaringType == type || !m.IsSpecialName).Distinct().ToArray();
-
-        foreach (var method in methods)
+        
+        var seenMethods = new HashSet<string>();
+        
+        foreach (MethodInfo method in type.GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static))
         {
-            Console.WriteLine(method.Name);
+            if (!method.IsSpecialName && seenMethods.Add(method.Name))
+            {
+                Console.WriteLine(method.Name);
+            }
         }
+    }
+}
+
+class Dog
+{
+    public string Name { get; set; }
+    public int Age { get; set; }
+
+    public void Bark()
+    {
+        Console.WriteLine("Woof!");
+    }
+
+    public void Sit()
+    {
+        Console.WriteLine("Sits.");
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Obj.Print(98);
+        Console.WriteLine("-----------------");
+        Obj.Print(1.00);
+        Console.WriteLine("-----------------");
+        Obj.Print("hello, World");
+        Console.WriteLine("-----------------");
+        Obj.Print(new List<int>());
+        Console.WriteLine("-----------------");
+        Obj.Print(new Dictionary<int, string>());
+        Console.WriteLine("-----------------");
+        Obj.Print(new Dog());
     }
 }
