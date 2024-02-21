@@ -1,36 +1,18 @@
-﻿using System.Reflection;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Reflection;
 
+// Ensure this is the only Program class in your project
 class Program
 {
     static void Main(string[] args)
     {
-        // Example object
-        var exampleObject = new ExampleClass();
-        Obj.Print(exampleObject);
-
-        Console.WriteLine("-----------------");
-
-        // Example with a built-in type
+        var num = 10;
         var myList = new List<int>();
-        Obj.Print(myList);
 
+        Obj.Print(num);
         Console.WriteLine("-----------------");
-
-        // Primitive type example
-        int number = 42;
-        Obj.Print(number);
-    }
-}
-
-class ExampleClass
-{
-    public int ExampleProperty { get; set; }
-    public void ExampleMethod()
-    {
-        Console.WriteLine("Method invoked");
+        Obj.Print(myList);
     }
 }
 
@@ -52,6 +34,8 @@ class Obj
 
         foreach (MethodInfo m in pMethod)
         {
+            // Print only the methods declared in the type of myObj,
+            // excluding inherited methods, unless overridden.
             if (m.DeclaringType == myObj.GetType())
             {
                 Console.WriteLine(m.Name);
