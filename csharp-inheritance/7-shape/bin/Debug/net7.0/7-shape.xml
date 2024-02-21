@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>7-shape</name>
+    </assembly>
+    <members>
+        <member name="T:Shape">
+            <summary>
+            Shape class is the base class for all shapes.
+            </summary>
+        </member>
+        <member name="M:Shape.Area">
+            <summary>
+            Empty area calculation.
+            </summary>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="T:Rectangle">
+            <summary>
+            Class Rectangle which inherits from Shape.
+            </summary>
+        </member>
+        <member name="P:Rectangle.Width">
+            <summary>
+            Manages width.
+            </summary>
+        </member>
+        <member name="P:Rectangle.Height">
+            <summary>
+            Manages height.
+            </summary>
+        </member>
+        <member name="M:Rectangle.Area">
+            <summary>
+            Calculates the area of the rectangle.
+            </summary>
+            <returns>Area of the rectangle.</returns>
+        </member>
+        <member name="M:Rectangle.ToString">
+            <summary>
+            Local representation of the Rectangle in string format.
+            </summary>
+            <returns>String representation of the Rectangle.</returns>
+        </member>
+    </members>
+</doc>
