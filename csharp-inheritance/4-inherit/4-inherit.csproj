@@ -6,6 +6,7 @@
     <RootNamespace>_4_inherit</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <DocumentationFile>bin/Debug/netcoreapp2.1/4-inherit.xml</DocumentationFile>
   </PropertyGroup>
 
 </Project>

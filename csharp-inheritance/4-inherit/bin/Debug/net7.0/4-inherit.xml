@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>4-inherit</name>
+    </assembly>
+    <members>
+        <member name="T:Animal">
+            <summary>
+            Represents the most basic form of an animal.
+            </summary>
+        </member>
+        <member name="T:Dog">
+            <summary>
+            Represents a dog, which is a derivative of an animal.
+            </summary>
+        </member>
+    </members>
+</doc>
