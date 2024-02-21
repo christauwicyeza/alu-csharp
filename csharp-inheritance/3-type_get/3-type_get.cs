@@ -9,55 +9,24 @@ public class Obj
         Type type = myObj.GetType();
         Console.WriteLine($"{type.Name} Properties:");
         
-        foreach (PropertyInfo property in type.GetProperties())
+        PropertyInfo[] properties = type.GetProperties();
+        foreach (PropertyInfo property in properties)
         {
             Console.WriteLine(property.Name);
         }
 
         Console.WriteLine($"{type.Name} Methods:");
         
+        MethodInfo[] methods = type.GetMethods();
         var seenMethods = new HashSet<string>();
         
-        foreach (MethodInfo method in type.GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static))
+        foreach (MethodInfo method in methods)
         {
+            // Exclude special names (property getters/setters, etc.) and avoid duplicates
             if (!method.IsSpecialName && seenMethods.Add(method.Name))
             {
                 Console.WriteLine(method.Name);
             }
         }
-    }
-}
-
-class Dog
-{
-    public string Name { get; set; }
-    public int Age { get; set; }
-
-    public void Bark()
-    {
-        Console.WriteLine("Woof!");
-    }
-
-    public void Sit()
-    {
-        Console.WriteLine("Sits.");
-    }
-}
-
-class Program
-{
-    static void Main(string[] args)
-    {
-        Obj.Print(98);
-        Console.WriteLine("-----------------");
-        Obj.Print(1.00);
-        Console.WriteLine("-----------------");
-        Obj.Print("hello, World");
-        Console.WriteLine("-----------------");
-        Obj.Print(new List<int>());
-        Console.WriteLine("-----------------");
-        Obj.Print(new Dictionary<int, string>());
-        Console.WriteLine("-----------------");
-        Obj.Print(new Dog());
     }
 }
