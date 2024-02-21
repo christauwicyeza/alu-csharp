@@ -2,20 +2,6 @@
 using System.Collections.Generic;
 using System.Reflection;
 
-// Ensure this is the only Program class in your project
-class Program
-{
-    static void Main(string[] args)
-    {
-        var num = 10;
-        var myList = new List<int>();
-
-        Obj.Print(num);
-        Console.WriteLine("-----------------");
-        Obj.Print(myList);
-    }
-}
-
 class Obj
 {
     public static void Print(object myObj)
