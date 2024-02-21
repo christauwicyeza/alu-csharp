@@ -1,32 +1,48 @@
 ﻿using System;
+using System.Linq;
 using System.Reflection;
 
-class Obj
+public class Obj
 {
     public static void Print(object myObj)
     {
-        // Get TypeInfo of the object
-        TypeInfo tInfo = myObj.GetType().GetTypeInfo();
-
-        // Print properties
-        Console.WriteLine($"{tInfo.Name} Properties:");
-        foreach (PropertyInfo prop in tInfo.GetProperties())
+        if (myObj == null)
         {
-            Console.WriteLine(prop.Name);
+            Console.WriteLine("The object is null");
+            return;
         }
 
-        // Print methods, excluding property accessors and methods inherited from Object, 
-        // unless it's the GetType method as it's specifically mentioned in the example
-        Console.WriteLine($"{tInfo.Name} Methods:");
-        foreach (MethodInfo method in tInfo.GetMethods())
+        // Getting the type information of the object
+        Type type = myObj.GetType();
+        Console.WriteLine($"{type.Name} Properties:");
+
+        // Getting and printing all public properties of the object
+        PropertyInfo[] properties = type.GetProperties();
+        foreach (var property in properties)
         {
-            // Check to exclude methods inherited from Object (except GetType)
-            // and property accessors
-            if ((method.DeclaringType == tInfo.AsType() || method.Name == "GetType") &&
-                !method.IsSpecialName) // IsSpecialName is true for property accessors and event accessors
-            {
-                Console.WriteLine(method.Name);
-            }
+            Console.WriteLine(property.Name);
         }
+
+        Console.WriteLine($"{type.Name} Methods:");
+        // Getting and printing all public methods of the object, including inherited methods
+        MethodInfo[] methods = type.GetMethods().Where(m => m.DeclaringType == type || !m.IsSpecialName).Distinct().ToArray();
+
+        foreach (var method in methods)
+        {
+            Console.WriteLine(method.Name);
+        }
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        var num = 10;
+        var myList = new List<int>();
+
+        Obj.Print(num);
+        Console.WriteLine("-----------------");
+        Obj.Print(myList);
     }
 }
