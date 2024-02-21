@@ -1,85 +1,104 @@
-﻿using System;
+﻿
+using System;
 
-public class Shape
-{
-    public virtual int Area()
-    {
+
+
+/// <summary>
+/// Shape class is based class for all shapes
+/// </summary>
+public class Shape{
+
+
+/// <summary>
+/// Emtpy area calculation
+/// </summary>
+/// <returns></returns>
+/// <exception cref="NotImplementedException"></exception>
+    public virtual int Area(){
         throw new NotImplementedException("Area() is not implemented");
     }
+
 }
 
-public class Rectangle : Shape
-{
+/// <summary>
+/// Class Rectangle which inherits from Shape
+/// </summary>
+public class Rectangle : Shape{
+
+// width of rectangle
     private int width;
+    // height of rectangle
     private int height;
 
-    public int Width
-    {
-        get { return width; }
-        set
-        {
-            if (value < 0)
-            {
-                throw new ArgumentException("Width must be greater than or equal to 0");
-            }
-            width = value;
+/// <summary>
+/// managees width
+/// </summary>
+    public int Width{
+        get { return width ;}
+        set { 
+            if( value < 0){
+            throw new ArgumentException("Width must be greater than or equal to 0");
+        }
+        width = value;
         }
     }
 
-    public int Height
-    {
-        get { return height; }
-        set
-        {
-            if (value < 0)
-            {
-                throw new ArgumentException("Height must be greater than or equal to 0");
-            }
-            height = value;
+/// <summary>
+/// manages height
+/// </summary>
+    public int Height{
+
+        get { return height;}
+        set { if(value < 0){
+            throw new ArgumentException("Height must be greater than or equal to 0");
         }
+
+        height = value;
+        }
+
     }
 
-    public override int Area()
-    {
+/// <summary>
+/// Calculates area of rectangle
+/// </summary>
+/// <returns> Area of rectangle</returns>
+    public override int Area(){
         return height * width;
     }
 
-    public override string ToString()
-    {
+/// <summary>
+/// Local representation of the Rectangle in string format
+/// </summary>
+/// <returns>String</returns>
+    public override string ToString(){
+
         return $"[Rectangle] {width} / {height}";
     }
 }
 
-public class Square : Rectangle
-{
+
+/// <summary>
+/// Square derived class from Rectangle
+/// </summary>
+public class Square : Rectangle{
+
+// size of Square
     private int size;
 
-    public int Size
-    {
-        get { return size; }
-        set
-        {
-            if (value < 0)
-            {
-                throw new ArgumentException("Size must be greater than or equal to 0");
-            }
+/// <summary>
+/// getter and setter of the Size
+/// </summary>
+    public int Size{
+        get { return size ; }
+        set {  if (value < 0 ){
+            throw new ArgumentException("Size must be greater than or equal to 0");
+        }
             size = value;
             Height = value;
             Width = value;
         }
     }
-}
 
-public class Program
-{
-    public static void Main()
-    {
-        Rectangle rectangle = new Rectangle { Width = 5, Height = 10 };
-        Console.WriteLine(rectangle.ToString());
-        Console.WriteLine($"Rectangle Area: {rectangle.Area()}");
 
-        Square square = new Square { Size = 4 };
-        Console.WriteLine(square.ToString());
-        Console.WriteLine($"Square Area: {square.Area()}");
-    }
+
 }
