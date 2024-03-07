@@ -6,6 +6,7 @@
     <RootNamespace>_28_determinant</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <DocumentationFile>bin/Debug/netcoreapp2.1/28-determinant.xml</DocumentationFile>
   </PropertyGroup>
 
 </Project>
