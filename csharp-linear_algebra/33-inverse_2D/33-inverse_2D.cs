@@ -1,23 +1,35 @@
-﻿using System;
+﻿/// <summary>
+/// Represents a utility class for matrix math operations.
+/// </summary>
 
-class VectorMath{
-
-    public static double[] CrossProduct(double[] vector1, double[] vector2){
-
-        if(vector1.Length == 3 && vector2.Length == 3){
-
-            double x =  ((vector1[1] * vector2[2]) - (vector2[1] * vector1[2]));
-            double y = -((vector1[0] * vector2[2]) - (vector2[0] * vector1[2]));
-            double z =  ((vector1[0] * vector2[1]) - (vector1[1] * vector2[0]));
-            
-            if(x == 0 )
-            {
-                x = Math.Abs(x);
-            }
-
-            return new double[]{ x, y, z};
+class MatrixMath
+{
+    /// <summary>
+    /// Calculates the inverse of a 2D matrix.
+    /// </summary>
+    /// <param name="matrix">The input matrix.</param>
+    /// <returns>The inverse of the input matrix, or [-1] if the matrix is not 2D or non-invertible.</returns>
+    public static double[,] Inverse2D(double[,] matrix)
+    {
+        if (matrix.GetLength(0) != 2 || matrix.GetLength(1) != 2)
+        {
+            return new double[,] { { -1 } };
         }
 
-        return new double[]{-1};
+        double determinant = matrix[0, 0] * matrix[1, 1] - matrix[0, 1] * matrix[1, 0];
+
+        if (determinant == 0)
+        {
+            return new double[,] { { -1 } };
+        }
+
+        double[,] inverse = new double[2, 2];
+
+        inverse[0, 0] = matrix[1, 1] / determinant;
+        inverse[0, 1] = -matrix[0, 1] / determinant;
+        inverse[1, 0] = -matrix[1, 0] / determinant;
+        inverse[1, 1] = matrix[0, 0] / determinant;
+
+        return inverse;
     }
 }
