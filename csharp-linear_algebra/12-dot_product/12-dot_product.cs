@@ -1,16 +1,27 @@
 ﻿using System;
 
-class VectorMath{
-    public static double DotProduct(double[] vector1, double[] vector2){
-
-        if(vector1.Length == 2 && vector2.Length == 2){
-            return (vector1[0]  * vector2[0]) + (vector1[1] * vector2[1]);
+class VectorMath
+{
+    public static double DotProduct(double[] vector1, double[] vector2)
+    {
+        if (vector1.Length != vector2.Length || (vector1.Length < 2 || vector1.Length > 3))
+        {
+            return -1; // Return -1 if vectors are not the same size or not 2D or 3D
         }
 
-        if(vector1.Length == 3 && vector2.Length == 3){
-            return (vector1[0] * vector2[0]) + (vector1[1] * vector2[1]) + (vector1[2] * vector2[2]);
+        double result = 0;
+        switch (vector1.Length)
+        {
+            case 2:
+            case 3:
+                for (int i = 0; i < vector1.Length; i++)
+                {
+                    result += vector1[i] * vector2[i];
+                }
+                break;
+            default:
+                return -1;
         }
-
-        return -1;
+        return result;
     }
 }
