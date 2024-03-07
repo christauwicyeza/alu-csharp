@@ -26,17 +26,3 @@ class VectorMath
         return $"({string.Join(", ", vector.Select(x => x.ToString()))})";
     }
 }
-
-class Program
-{
-    static void Main(string[] args)
-    {
-        double[] vector1 = { /* your vector1 elements */ };
-        double[] vector2 = { /* your vector2 elements */ };
-
-        double[] crossProductResult = VectorMath.CrossProduct(vector1, vector2);
-        string formattedResult = VectorMath.FormatVector(crossProductResult);
-
-        Console.WriteLine(formattedResult);
-    }
-}
