@@ -1,42 +1,34 @@
-﻿using System;
-/*
-class Program{
-    public static void Main(string[] args){
-        double[,] emtpy = {{}, { }};
-        double[,] result = MatrixMath.Transpose(emtpy);
-        for (int i = 0; i < result.GetLength(0); i++)
-        {
-            for (int j = 0; j < result.GetLength(1); j++)
-            {
-                Console.Write(result[i, j] + " ");
-            }
-            Console.WriteLine();
-        }
-    }
-}
-*/
+﻿/// <summary>
+/// Represents a utility class for matrix math operations.
+/// </summary>
 
-class MatrixMath{
-    public static T[,] Transpose<T>(T[,] matrix){
-
+class MatrixMath
+{
+    /// <summary>
+    /// Transposes a matrix and returns the resulting matrix.
+    /// </summary>
+    /// <param name="matrix">The matrix to be transposed.</param>
+    /// <returns>The transposed matrix, or an empty matrix if the input matrix is empty.</returns>
+    public static double[,] Transpose(double[,] matrix)
+    {
         int rows = matrix.GetLength(0);
         int cols = matrix.GetLength(1);
 
-
-        if(rows == 0 && cols == 0){
-
-            return new T[,]{{},{}};
+        if (rows == 0 || cols == 0)
+        {
+            return new double[0, 0];
         }
 
-        T[,] TranposedMatrix = new T[cols, rows];
+        double[,] transposedMatrix = new double[cols, rows];
 
-        for(int row = 0; row < rows ; row++){
-            for(int col = 0; col < cols; col++){
-        
-                TranposedMatrix[col, row] = matrix[row, col];
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < cols; j++)
+            {
+                transposedMatrix[j, i] = matrix[i, j];
             }
         }
 
-        return TranposedMatrix;  
+        return transposedMatrix;
     }
 }
