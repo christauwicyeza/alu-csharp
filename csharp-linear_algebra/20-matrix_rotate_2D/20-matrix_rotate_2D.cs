@@ -1,49 +1,47 @@
 ﻿using System;
 
-class Program
-{
-    public static void Main(string[] arg)
-    {
-        double[,] TestMatrix = { { 1, 2 }, { 3, 4 } };
-
-        // Assume angle is in radians for this example; for degrees, convert first
-        double radians = 1; // Example angle in radians
-        double[,] resultMatrix = MatrixMath.Rotate2D(TestMatrix, radians);
-
-        Console.WriteLine($"{resultMatrix[0,0]}  --  {resultMatrix[0,1]}\n{resultMatrix[1,0]}  --  {resultMatrix[1,1]}");
-    }
-}
-
+/// <summary>
+/// Utility for a Matrix Math class.
+/// </summary>
 class MatrixMath
 {
-    public static double[,] Rotate2D(double[,] matrix, double angle)
-    {
-        double[,] rotationMatrix = {
-            { Math.Cos(angle), -Math.Sin(angle) }, // Corrected sign for standard counterclockwise rotation
-            { Math.Sin(angle), Math.Cos(angle) }
-        };
-
-        int rows = matrix.GetLength(0);
-        int cols = matrix.GetLength(1);
-
-        if (rows == cols && rows == 2)
-        {
-            double[,] result = new double[2, 2];
-
-            for (int i = 0; i < 2; i++)
-            {
-                for (int j = 0; j < 2; j++)
-                {
-                    for (int k = 0; k < 2; k++)
-                    {
-                        result[i, j] += Math.Round(matrix[i, k] * rotationMatrix[k, j], 2);
-                    }
-                }
-            }
-
-            return result;
+    /// <summary>
+    /// Method that multiplies two matrices and returns the resulting matrix.
+    /// </summary>
+    /// <param name="matrix1">Matrix 1</param>
+    /// <param name="matrix2">Matrix 2</param>
+    /// <returns>returns the new matrix</returns>
+    public static double[,] Multiply(double[,] matrix1, double[,] matrix2){
+        if (matrix1.Length == 0 ||
+            matrix2.Length == 0 ||
+            matrix1.GetLength(1) != matrix2.GetLength(0)){
+            return (new double[,]{{-1}});
         }
-
-        return new double[,] { { -1 } };
+        var res = new double[matrix1.GetLength(0),matrix2.GetLength(1)];
+        double sum = 0.0;
+        for (int y = 0; y < matrix1.GetLength(0); y++){
+            for (int x2 = 0; x2 < matrix2.GetLength(1); x2++){
+                sum = 0;
+                for (int x = 0; x < matrix1.GetLength(1); x++){
+                    sum = Math.Round(sum + (matrix1[y,x] * matrix2[x, x2]), 2);
+                }
+                res[y, x2] = Math.Round(sum, 2);
+            }
+        }
+        return res;  
+    }
+    /// <summary>
+    /// Method that rotates a square 2D matrix by a given angle in radians
+    /// </summary>
+    /// <param name="matrix">Matrix to rotate</param>
+    /// <param name="angle">New angle</param>
+    /// <returns>returns the resulting matrix.</returns>
+    public static double[,] Rotate2D(double[,] matrix, double angle){
+        double cosAngle = System.Math.Cos(angle);
+        double sinAngle = System.Math.Sin(angle);
+        var rotation = new double[2,2]{{cosAngle, sinAngle}, {-sinAngle, cosAngle}};
+        var res = new double[matrix.GetLength(0),matrix.GetLength(1)];
+        res = Multiply(matrix, rotation);
+        return res;
     }
 }
