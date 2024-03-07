@@ -6,6 +6,7 @@
     <RootNamespace>_14_matrix_addition</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <DocumentationFile>bin/Debug/netcoreapp2.1/14-matrix_addition.xml</DocumentationFile>
   </PropertyGroup>
 
 </Project>
