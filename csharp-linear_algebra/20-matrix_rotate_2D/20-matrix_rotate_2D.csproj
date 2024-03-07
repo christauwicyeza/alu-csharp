@@ -6,7 +6,7 @@
     <RootNamespace>_20_matrix_rotate_2D</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <DocumentationFile>bin/Debug/netcoreapp2.1/20-matrix_rotate_2D</DocumentationFile>
+    <DocumentationFile>bin/Debug/netcoreapp2.1/20-matrix_rotate_2D.xml</DocumentationFile>
   </PropertyGroup>
 
 </Project>
