@@ -6,6 +6,7 @@
     <RootNamespace>_18_matrix_matrix_mul</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <DocumentationFile>bin/Debug/netcoreapp2.1/18-matrix_matrix_mul</DocumentationFile>
   </PropertyGroup>
 
 </Project>
