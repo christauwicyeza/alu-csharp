@@ -6,6 +6,7 @@
     <RootNamespace>_33_inverse_2D</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <DocumentationFile>bin/Debug/netcoreapp2.1/33-inverse_2D.xml</DocumentationFile>
   </PropertyGroup>
 
 </Project>
