@@ -4,39 +4,21 @@ class VectorMath
 {
     public static double DotProduct(double[] vector1, double[] vector2)
     {
-        // Check if both vectors are of the same size and either 2D or 3D
-        if ((vector1.Length == vector2.Length) && (vector1.Length == 2 || vector1.Length == 3))
+        // Check if both vectors are of the same dimension (2D or 3D) and valid
+        if ((vector1.Length == 2 || vector1.Length == 3) && vector1.Length == vector2.Length)
         {
-            // Calculate dot product
-            double result = 0;
+            double dotProduct = 0;
+            // Calculate the dot product
             for (int i = 0; i < vector1.Length; i++)
             {
-                result += vector1[i] * vector2[i];
+                dotProduct += vector1[i] * vector2[i];
             }
-            return result;
+            return dotProduct;
         }
         else
         {
-            // Return -1 if vectors do not meet the criteria
+            // Return -1 if the vectors are not both 2D or both 3D or not of the same dimension
             return -1;
         }
-    }
-
-    static void Main(string[] args)
-    {
-        // Example for 2D vectors
-        double[] vector2D_1 = {1, 2};
-        double[] vector2D_2 = {3, 4};
-        Console.WriteLine("Dot Product of 2D vectors: " + DotProduct(vector2D_1, vector2D_2));
-
-        // Example for 3D vectors
-        double[] vector3D_1 = {1, 2, 3};
-        double[] vector3D_2 = {4, 5, 6};
-        Console.WriteLine("Dot Product of 3D vectors: " + DotProduct(vector3D_1, vector3D_2));
-
-        // Example for invalid vector sizes
-        double[] invalidVector1 = {1, 2};
-        double[] invalidVector2 = {1, 2, 3};
-        Console.WriteLine("Dot Product of mismatched vectors: " + DotProduct(invalidVector1, invalidVector2));
     }
 }
