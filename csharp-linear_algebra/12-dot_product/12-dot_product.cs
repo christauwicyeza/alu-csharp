@@ -20,7 +20,7 @@ class VectorMath
                 }
                 break;
             default:
-                return -1;
+                return -1; // Return -1 for vectors of invalid dimensions
         }
         return result;
     }
