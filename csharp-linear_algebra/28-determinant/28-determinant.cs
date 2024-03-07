@@ -2,11 +2,6 @@
 
 class MatrixMath
 {
-    /// <summary>
-    /// Calculates the determinant of a matrix.
-    /// </summary>
-    /// <param name="matrix">The matrix to calculate the determinant of.</param>
-    /// <returns>The determinant of the matrix, or -1 if the matrix is not 2D or 3D.</returns>
     public static double Determinant(double[,] matrix){
         int rows = matrix.GetLength(0);
         int cols = matrix.GetLength(1);
@@ -29,6 +24,6 @@ class MatrixMath
                 + matrix[0, 2] * (matrix[1, 0] * matrix[2, 1] - matrix[2, 0] * matrix[1, 1]);
         }
 
-        return det;
+        return Math.Round(det, 2);
     }
 }
