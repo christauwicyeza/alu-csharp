@@ -6,6 +6,7 @@
     <RootNamespace>_3_type_get</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <DocumentationFile>bin/Debug/netcoreapp2.1/3-type_get.xml</DocumentationFile>
   </PropertyGroup>
 
 </Project>
