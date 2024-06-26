@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>0-queue</name>
+    </assembly>
+    <members>
+        <member name="M:Queue`1.CheckType">
+            <summary>
+            Checks and returns the type of the queue's generic parameter.
+            </summary>
+            <returns>The type of the elements in the queue.</returns>
+        </member>
+    </members>
+</doc>

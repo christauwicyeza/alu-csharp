@@ -1,7 +1,5 @@
 ﻿using System;
 
-namespace CustomQueue
-{
     public class Queue<T>
     {
         public Type CheckType()
@@ -9,4 +7,3 @@ namespace CustomQueue
             return typeof(T);
         }
     }
-}
