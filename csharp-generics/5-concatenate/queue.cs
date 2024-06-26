@@ -1,3 +1,4 @@
+#nullable enable
 using System;
 
 /// <summary>
@@ -11,9 +12,20 @@ public class Queue<T>
     /// </summary>
     public class Node
     {
+        /// <summary>
+        /// Gets or sets the value of the node.
+        /// </summary>
         public T? Value;
+
+        /// <summary>
+        /// Gets or sets the next node in the queue.
+        /// </summary>
         public Node? Next;
 
+        /// <summary>
+        /// Initializes a new instance of the Node class with the specified value.
+        /// </summary>
+        /// <param name="value">The value to store in the node.</param>
         public Node(T value)
         {
             Value = value;
@@ -38,7 +50,7 @@ public class Queue<T>
     /// <summary>
     /// Adds an element to the end of the queue.
     /// </summary>
-    /// <param name="value">The value to enqueue.</param>
+    /// <param name="value">The value to add to the queue.</param>
     public void Enqueue(T value)
     {
         Node newNode = new Node(value);
@@ -95,7 +107,7 @@ public class Queue<T>
     }
 
     /// <summary>
-    /// Displays all elements in the queue.
+    /// Prints all elements in the queue.
     /// </summary>
     public void Print()
     {
@@ -139,6 +151,7 @@ public class Queue<T>
             outputValue += current.Value;
             current = current.Next;
 
+            // Add space if concatenating strings
             if (CheckType() == typeof(string) && current != null)
                 outputValue += " ";
         }
@@ -147,9 +160,9 @@ public class Queue<T>
     }
 
     /// <summary>
-    /// Returns the type of the elements in the queue.
+    /// Returns the type of elements in the queue.
     /// </summary>
-    /// <returns>The type of the elements in the queue.</returns>
+    /// <returns>The type of elements in the queue.</returns>
     public Type CheckType()
     {
         return typeof(T);
