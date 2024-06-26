@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>4-print</name>
+    </assembly>
+    <members>
+        <member name="T:Queue`1">
+            <summary>
+            Represents a generic queue.
+            </summary>
+            <typeparam name="T">The type of elements in the queue.</typeparam>
+        </member>
+        <member name="T:Queue`1.Node">
+            <summary>
+            Represents a node in the queue.
+            </summary>
+        </member>
+        <member name="P:Queue`1.Node.Value">
+            <summary>
+            Gets or sets the value of the node.
+            </summary>
+        </member>
+        <member name="P:Queue`1.Node.Next">
+            <summary>
+            Gets or sets the next node in the queue.
+            </summary>
+        </member>
+        <member name="M:Queue`1.Node.#ctor(`0)">
+            <summary>
+            Initializes a new instance of the Node class with the specified value.
+            </summary>
+            <param name="value">The value of the node.</param>
+        </member>
+        <member name="M:Queue`1.#ctor">
+            <summary>
+            Initializes a new instance of the Queue class.
+            </summary>
+        </member>
+        <member name="M:Queue`1.Enqueue(`0)">
+            <summary>
+            Adds an element to the end of the queue.
+            </summary>
+            <param name="value">The value to enqueue.</param>
+        </member>
+        <member name="M:Queue`1.Dequeue">
+            <summary>
+            Removes and returns the element at the beginning of the queue.
+            </summary>
+            <returns>The element that was removed from the beginning of the queue.</returns>
+        </member>
+        <member name="M:Queue`1.Peek">
+            <summary>
+            Returns the element at the beginning of the queue without removing it.
+            </summary>
+            <returns>The element at the beginning of the queue.</returns>
+        </member>
+        <member name="M:Queue`1.Print">
+            <summary>
+            Prints all elements in the queue.
+            </summary>
+        </member>
+        <member name="M:Queue`1.CheckType">
+            <summary>
+            Gets the type of elements stored in the queue.
+            </summary>
+            <returns>The type of elements in the queue.</returns>
+        </member>
+        <member name="M:Queue`1.Count">
+            <summary>
+            Gets the number of elements in the queue.
+            </summary>
+            <returns>The number of elements in the queue.</returns>
+        </member>
+    </members>
+</doc>
