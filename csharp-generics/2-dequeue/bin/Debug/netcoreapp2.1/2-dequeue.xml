@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>2-dequeue</name>
+    </assembly>
+    <members>
+        <member name="T:Queue`1">
+            <summary>
+            A generic queue.
+            </summary>
+            <typeparam name="T">Element type.</typeparam>
+        </member>
+        <member name="T:Queue`1.Node">
+            <summary>
+            A node in the queue.
+            </summary>
+        </member>
+        <member name="P:Queue`1.Node.Value">
+            <summary>
+            Node value.
+            </summary>
+        </member>
+        <member name="P:Queue`1.Node.Next">
+            <summary>
+            Next node.
+            </summary>
+        </member>
+        <member name="M:Queue`1.Node.#ctor(`0)">
+            <summary>
+            Creates a node with a value.
+            </summary>
+            <param name="value">Node value.</param>
+        </member>
+        <member name="P:Queue`1.Head">
+            <summary>
+            Queue head.
+            </summary>
+        </member>
+        <member name="P:Queue`1.Tail">
+            <summary>
+            Queue tail.
+            </summary>
+        </member>
+        <member name="F:Queue`1.count">
+            <summary>
+            Node count.
+            </summary>
+        </member>
+        <member name="M:Queue`1.#ctor">
+            <summary>
+            Initializes the queue.
+            </summary>
+        </member>
+        <member name="M:Queue`1.Enqueue(`0)">
+            <summary>
+            Adds a node to the end.
+            </summary>
+            <param name="value">Node value.</param>
+        </member>
+        <member name="M:Queue`1.Dequeue">
+            <summary>
+            Removes the first node from the queue and returns its value.
+            </summary>
+            <returns>The value of the first node.</returns>
+        </member>
+        <member name="M:Queue`1.Count">
+            <summary>
+            Gets the node count.
+            </summary>
+            <returns>Node count.</returns>
+        </member>
+        <member name="M:Queue`1.CheckType">
+            <summary>
+            Gets the element type.
+            </summary>
+            <returns>Element type.</returns>
+        </member>
+        <member name="M:Queue`1.Main(System.String[])">
+            <summary>
+            Main method for testing Queue class.
+            </summary>
+        </member>
+    </members>
+</doc>
