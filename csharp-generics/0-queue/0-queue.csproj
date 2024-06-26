@@ -7,7 +7,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <DocumentationFile>bin/Debug/netcoreapp3.1/0-queue.xml</DocumentationFile>
+    <DocumentationFile>bin/Debug/netcoreapp2.1/0-queue.xml</DocumentationFile>
   </PropertyGroup>
 
 </Project>

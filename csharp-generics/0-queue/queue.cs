@@ -1,9 +1,13 @@
 ﻿using System;
 
-    public class Queue<T>
+/// <summary>
+/// Represents a generic queue.
+/// </summary>
+/// <typeparam name="T">Element type.</typeparam>
+public class Queue<T>
+{
+    public Type CheckType()
     {
-        public Type CheckType()
-        {
-            return typeof(T);
-        }
+        return typeof(T);
     }
+}
