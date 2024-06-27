@@ -1,94 +1,104 @@
 ﻿using System;
 
 /// <summary>
-/// player class
+/// Represents a player with health properties and methods.
 /// </summary>
-public class Player {
-
-   
-    private string name = "Player";
-
-    private float maxHp = 100f;
-
-
+public class Player
+{
+    private string name;
+    private float maxHp;
     private float hp;
 
-   /// <summary>
-   /// calculatehealth delegate
-   /// </summary>
-   /// <param name="amount"></param>
-    delegate void CalculateHealth(float amount);
+    /// <summary>
+    /// Delegate to calculate health changes.
+    /// </summary>
+    /// <param name="amount">The amount of health change.</param>
+    public delegate void CalculateHealth(float amount);
 
     /// <summary>
-    /// player method
+    /// Initializes a new instance of the Player class.
     /// </summary>
-    /// <param name="name"></param>
-    /// <param name="maxHp"></param>
-    public Player(string name = "Player", float maxHp = 100f){
+    /// <param name="name">The name of the player.</param>
+    /// <param name="maxHp">The maximum health points of the player.</param>
+    public Player(string name, float maxHp)
+    {
+        this.name = "Player";
+        this.maxHp = 100f;
+        this.hp = this.maxHp;
 
-        if(maxHp <= 0){
-            this.maxHp = 100f;
+        if (maxHp > 0)
+        {
+            this.name = name;
+            this.maxHp = maxHp;
+            this.hp = maxHp;
+        }
+        else
+        {
             Console.WriteLine("maxHp must be greater than 0. maxHp set to 100f by default.");
-        }else{
-               this.maxHp = maxHp;
-        }
-
-        this.name = name;
-        hp = this.maxHp;
-    }
-
- 
-
-
-/// <summary>
-/// take damage method
-/// </summary>
-/// <param name="damage"></param>
-    public void TakeDamage(float damage){
-        
-        if(damage < 0){
-            Console.WriteLine($"{name} takes 0 damage!");
-        }else{
-            hp -= damage;
-            Console.WriteLine($"{name} takes {damage} damage!");
-        }
-        ValidateHP(hp);
-    }
-
-    /// <summary>
-    /// heldamage method
-    /// </summary>
-    /// <param name="heal"></param>
-    public void HealDamage(float heal){
-        
-        if(heal < 0){
-            Console.WriteLine($"{name} heals 0 HP!");
-        }else{
-            hp += heal;
-            Console.WriteLine($"{name} heals {heal} HP!");
-        }
-        ValidateHP(hp);
-    }
-
-/// <summary>
-/// validatehp method
-/// </summary>
-/// <param name="newHp"></param>
-    public void ValidateHP(float newHp){
-        if(newHp < 0 ){
-            hp  = 0;
-        }else if(newHp > maxHp){
-            hp = maxHp;
-        }else{
-            hp = newHp;
         }
     }
 
     /// <summary>
-    /// printhealth mthod
+    /// Prints the current health status of the player.
     /// </summary>
-    public void PrintHealth(){
+    public void PrintHealth()
+    {
         Console.WriteLine($"{name} has {hp} / {maxHp} health");
     }
 
+    /// <summary>
+    /// Inflicts damage on the player.
+    /// </summary>
+    /// <param name="damage">The amount of damage to inflict.</param>
+    public void TakeDamage(float damage)
+    {
+        if (damage < 0)
+        {
+            Console.WriteLine($"{name} takes 0 damage!");
+        }
+        else
+        {
+            Console.WriteLine($"{name} takes {damage} damage!");
+            float newHp = hp - damage;
+            ValidateHP(newHp);
+        }
+    }
+
+    /// <summary>
+    /// Heals the player.
+    /// </summary>
+    /// <param name="heal">The amount of healing to apply.</param>
+    public void HealDamage(float heal)
+    {
+        if (heal < 0)
+        {
+            Console.WriteLine($"{name} heals 0 HP!");
+        }
+        else
+        {
+            Console.WriteLine($"{name} heals {heal} HP!");
+            float newHp = hp + heal;
+            ValidateHP(newHp);
+        }
+    }
+
+    /// <summary>
+    /// Validates and sets the new value of hp.
+    /// </summary>
+    /// <param name="newHp">The new health value to validate and set.</param>
+    public void ValidateHP(float newHp)
+    {
+        if (newHp < 0)
+        {
+            hp = 0;
+        }
+        else if (newHp > maxHp)
+        {
+            hp = maxHp;
+        }
+        else
+        {
+            hp = newHp;
+        }
+    }
 }
