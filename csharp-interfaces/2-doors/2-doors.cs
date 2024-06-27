@@ -1,105 +1,70 @@
 ﻿using System;
+using System.Collections.Generic;
+
 
 /// <summary>
-/// Abstract base class.
+/// interace for interactions
 /// </summary>
-public abstract class Base
-{
-    /// <summary>
-    /// Gets or sets the name of the entity.
-    /// </summary>
-    public string? name { get; set; }
+public interface IInteractive{
 
     /// <summary>
-    /// Returns a string representation of the object.
+    /// interact method
     /// </summary>
-    /// <returns>A string that represents the current object.</returns>
-    public override string ToString()
-    {
-        return $"{name} is a {this.GetType().Name}";
+    public void Interact();
+}
+
+
+/// <summary>
+/// interface for breakables
+/// </summary>
+public interface IBreakable {
+
+    // durability
+    public int durability { get ; set;}
+
+    /// <summary>
+    /// breaking stuff
+    /// </summary>
+    public void Break();
+}
+
+
+/// <summary>
+/// collecting stuff
+/// </summary>
+public interface ICollectable{
+
+    // collecting
+    public bool isCollected { get ; set; }
+    /// <summary>
+    /// for collecting objects.
+    /// </summary>
+    public void Collect();
+}
+
+/// <summary>
+/// Door class for controlling a door
+/// </summary>
+public class Door : Base , IInteractive{
+
+    public Door(string value = "Door"){
+        name = value;
+    }
+
+    public void Interact(){
+        Console.WriteLine($"You try to open the {name}. It's locked.");
     }
 }
 
-/// <summary>
-/// Interface for interactive objects.
-/// </summary>
-public interface IInteractive
-{
-    /// <summary>
-    /// Interact method.
-    /// </summary>
-    void Interact();
-}
 
 /// <summary>
-/// Interface for breakable objects.
+/// base class for everythign.
 /// </summary>
-public interface IBreakable
-{
-    /// <summary>
-    /// Gets or sets the durability of the object.
-    /// </summary>
-    int durability { get; set; }
+public abstract class Base{
 
-    /// <summary>
-    /// Break method.
-    /// </summary>
-    void Break();
-}
+    public String? name { get ; set; }
 
-/// <summary>
-/// Interface for collectable objects.
-/// </summary>
-public interface ICollectable
-{
-    /// <summary>
-    /// Gets or sets a value indicating whether the object is collected.
-    /// </summary>
-    bool isCollected { get; set; }
-
-    /// <summary>
-    /// Collect method.
-    /// </summary>
-    void Collect();
-}
-
-/// <summary>
-/// TestObject class.
-/// </summary>
-public class TestObject : Base, IInteractive, IBreakable, ICollectable
-{
-    /// <summary>
-    /// Gets or sets the durability of the object.
-    /// </summary>
-    public int durability { get; set; }
-
-    /// <summary>
-    /// Gets or sets a value indicating whether the object is collected.
-    /// </summary>
-    public bool isCollected { get; set; }
-
-    /// <summary>
-    /// Interaction behavior.
-    /// </summary>
-    public void Interact()
-    {
-        Console.WriteLine($"{name} interacts.");
-    }
-
-    /// <summary>
-    /// Breaking behavior.
-    /// </summary>
-    public void Break()
-    {
-        Console.WriteLine($"{name} breaks.");
-    }
-
-    /// <summary>
-    /// Collecting behavior.
-    /// </summary>
-    public void Collect()
-    {
-        isCollected = true;
-        Console.WriteLine($"{name} is collected.");
+    public override String ToString(){
+        return $"{name} is a {this.GetType()}";
     }
 }
