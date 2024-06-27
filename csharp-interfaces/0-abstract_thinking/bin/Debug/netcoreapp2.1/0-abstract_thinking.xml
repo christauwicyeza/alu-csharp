@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>0-abstract_thinking</name>
+    </assembly>
+    <members>
+        <member name="T:Base">
+            <summary>
+            Abstract Base class representing an entity with a name.
+            </summary>
+        </member>
+        <member name="P:Base.Name">
+            <summary>
+            Gets or sets the name of the entity.
+            </summary>
+        </member>
+        <member name="M:Base.#ctor(System.String)">
+            <summary>
+            Constructor for initializing the Base class with a name.
+            </summary>
+            <param name="name">The name of the entity.</param>
+        </member>
+        <member name="M:Base.ToString">
+            <summary>
+            Overrides the default ToString method to return a formatted string indicating the type and name.
+            </summary>
+            <returns>A string representation of the object in the format: "{Name} is a {Type}".</returns>
+        </member>
+        <member name="T:GardenGate">
+            <summary>
+            Example derived class representing a specific type of Base entity.
+            </summary>
+        </member>
+        <member name="M:GardenGate.#ctor(System.String)">
+            <summary>
+            Constructor for initializing a GardenGate with a name.
+            </summary>
+            <param name="name">The name of the garden gate.</param>
+        </member>
+    </members>
+</doc>

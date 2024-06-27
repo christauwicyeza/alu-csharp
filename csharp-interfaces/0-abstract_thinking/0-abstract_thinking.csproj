@@ -6,6 +6,8 @@
     <RootNamespace>_0_abstract_thinking</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <DocumentationFile>bin/Debug/netcoreapp2.1/0-abstract_thinking.xml</DocumentationFile>
   </PropertyGroup>
 
 </Project>
