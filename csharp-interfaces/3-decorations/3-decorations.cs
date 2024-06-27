@@ -144,20 +144,23 @@ public class Decoration : Base, IInteractive, IBreakable
     }
 }
 
-class Program
+namespace YourNamespace // Replace YourNamespace with your actual namespace
 {
-    static void Main()
+    class Program
     {
-        // Create a Decoration object
-        Decoration teacup = new Decoration("Teacup", 2, false);
+        static void Main()
+        {
+            // Create a Decoration object
+            Decoration teacup = new Decoration("Teacup", 2, false);
 
-        // Demonstrate interaction and breaking
-        Console.WriteLine(teacup);
-        teacup.Interact();
-        teacup.Break();
-        teacup.Break();
-        teacup.Break();
-        teacup.Interact();
-        Console.WriteLine($"isQuestItem: {teacup.IsQuestItem}");
+            // Demonstrate interaction and breaking
+            Console.WriteLine(teacup);
+            teacup.Interact();
+            teacup.Break();
+            teacup.Break();
+            teacup.Break();
+            teacup.Interact();
+            Console.WriteLine($"isQuestItem: {teacup.IsQuestItem}");
+        }
     }
 }
