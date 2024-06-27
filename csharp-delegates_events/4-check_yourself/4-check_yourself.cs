@@ -209,3 +209,46 @@ public class Player
         Console.WriteLine($"{name} has {hp} / {maxHp} health");
     }
 }
+
+class Program
+{
+    static void Main()
+    {
+        // Create a player
+        Player player1 = new Player("Alice", 120f);
+
+        // Delegate instances
+        Player.CalculateHealth damageDelegate = new Player.CalculateHealth(player1.TakeDamage);
+        Player.CalculateHealth healDelegate = new Player.CalculateHealth(player1.HealDamage);
+
+        // CalculateModifier delegate instance
+        CalculateModifier modifierDelegate = new CalculateModifier(player1.ApplyModifier);
+
+        // Apply modifiers to damage and heal values
+        float baseDamage = 30f;
+        float baseHeal = 20f;
+
+        float weakDamage = modifierDelegate(baseDamage, Modifier.Weak);
+        float strongHeal = modifierDelegate(baseHeal, Modifier.Strong);
+
+        // Apply damage and heal using modified values
+        damageDelegate(weakDamage);  // Output: Alice takes 15 damage!
+        player1.PrintHealth();       // Output: Alice has 105 / 120 health
+
+        healDelegate(strongHeal);    // Output: Alice heals 30 HP!
+        player1.PrintHealth();       // Output: Alice has 120 / 120 health
+
+        // Check status
+        damageDelegate(60f);         // Output: Alice takes 60 damage!
+        player1.PrintHealth();       // Output: Alice has 60 / 120 health
+                                     // Output: Alice is doing well!
+
+        damageDelegate(45f);         // Output: Alice takes 45 damage!
+        player1.PrintHealth();       // Output: Alice has 15 / 120 health
+                                     // Output: Alice needs help!
+
+        healDelegate(20f);           // Output: Alice heals 20 HP!
+        player1.PrintHealth();       // Output: Alice has 35 / 120 health
+                                     // Output: Alice isn't doing too great...
+    }
+}
