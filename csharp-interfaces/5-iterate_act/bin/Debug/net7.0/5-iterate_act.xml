@@ -1,0 +1,158 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>5-iterate_act</name>
+    </assembly>
+    <members>
+        <member name="T:IInteractive">
+            <summary>
+            Interface for interactions
+            </summary>
+        </member>
+        <member name="M:IInteractive.Interact">
+            <summary>
+            Interact method.
+            </summary>
+        </member>
+        <member name="T:IBreakable">
+            <summary>
+            Interface for breakable objects.
+            </summary>
+        </member>
+        <member name="P:IBreakable.durability">
+            <summary>
+            Durability of the object.
+            </summary>
+        </member>
+        <member name="M:IBreakable.Break">
+            <summary>
+            Breaks the object.
+            </summary>
+        </member>
+        <member name="T:ICollectable">
+            <summary>
+            Interface for collectable objects.
+            </summary>
+        </member>
+        <member name="P:ICollectable.isCollected">
+            <summary>
+            Indicates if the object has been collected.
+            </summary>
+        </member>
+        <member name="M:ICollectable.Collect">
+            <summary>
+            Collects the object.
+            </summary>
+        </member>
+        <member name="T:Door">
+            <summary>
+            Class representing a door.
+            </summary>
+        </member>
+        <member name="M:Door.#ctor(System.String)">
+            <summary>
+            Constructs a door with a given name.
+            </summary>
+            <param name="value">The name of the door.</param>
+        </member>
+        <member name="M:Door.Interact">
+            <summary>
+            Interacts with the door.
+            </summary>
+        </member>
+        <member name="T:Decoration">
+            <summary>
+            Class representing a decoration object.
+            </summary>
+        </member>
+        <member name="F:Decoration.isQuestItem">
+            <summary>
+            Indicates if the decoration is a quest item.
+            </summary>
+        </member>
+        <member name="P:Decoration.durability">
+            <summary>
+            Durability of the decoration.
+            </summary>
+        </member>
+        <member name="M:Decoration.#ctor(System.String,System.Int32,System.Boolean)">
+            <summary>
+            Constructs a decoration object with specified parameters.
+            </summary>
+            <param name="CName">The name of the decoration.</param>
+            <param name="durability">The durability of the decoration.</param>
+            <param name="isQuestItem">Indicates if the decoration is a quest item.</param>
+        </member>
+        <member name="M:Decoration.Interact">
+            <summary>
+            Interacts with the decoration object.
+            </summary>
+        </member>
+        <member name="M:Decoration.Break">
+            <summary>
+            Breaks the decoration object.
+            </summary>
+        </member>
+        <member name="T:Key">
+            <summary>
+            Class representing a key object.
+            </summary>
+        </member>
+        <member name="P:Key.isCollected">
+            <summary>
+            Indicates if the key has been collected.
+            </summary>
+        </member>
+        <member name="M:Key.#ctor(System.String,System.Boolean)">
+            <summary>
+            Constructs a key object with specified parameters.
+            </summary>
+            <param name="name">The name of the key.</param>
+            <param name="isCollected">Indicates if the key is initially collected.</param>
+        </member>
+        <member name="M:Key.Collect">
+            <summary>
+            Collects the key.
+            </summary>
+        </member>
+        <member name="T:RoomObjects">
+            <summary>
+            Class to perform actions on room objects.
+            </summary>
+        </member>
+        <member name="M:RoomObjects.IterateAction(System.Collections.Generic.List{Base},System.Type)">
+            <summary>
+            Iterates over a list of room objects and performs actions based on their type.
+            </summary>
+            <param name="roomObjects">List of room objects.</param>
+            <param name="type">Type of action to perform (IInteractive, IBreakable, ICollectable).</param>
+        </member>
+        <member name="T:Base">
+            <summary>
+            Base class for all objects.
+            </summary>
+        </member>
+        <member name="P:Base.name">
+            <summary>
+            The name of the object.
+            </summary>
+        </member>
+        <member name="M:Base.ToString">
+            <summary>
+            Returns a string representation of the object.
+            </summary>
+            <returns>A string representation of the object.</returns>
+        </member>
+        <member name="T:Program">
+            <summary>
+            Main class to demonstrate object interactions.
+            </summary>
+        </member>
+        <member name="M:Program.Main(System.String[])">
+            <summary>
+            Main method to run the program.
+            </summary>
+            <param name="args">Command-line arguments (not used).</param>
+        </member>
+    </members>
+</doc>
