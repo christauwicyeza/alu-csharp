@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>1-user_interface</name>
+    </assembly>
+    <members>
+        <member name="T:Base">
+            <summary>
+            Abstract Base class representing an entity with a name.
+            </summary>
+        </member>
+        <member name="P:Base.Name">
+            <summary>
+            Gets or sets the name of the entity.
+            </summary>
+        </member>
+        <member name="M:Base.#ctor(System.String)">
+            <summary>
+            Constructor for initializing the Base class with a name.
+            </summary>
+            <param name="name">The name of the entity.</param>
+        </member>
+        <member name="M:Base.ToString">
+            <summary>
+            Overrides the default ToString method to return a formatted string indicating the type and name.
+            </summary>
+            <returns>A string representation of the object in the format: "{Name} is a {Type}".</returns>
+        </member>
+        <member name="T:IInteractive">
+            <summary>
+            Interface for interactive objects.
+            </summary>
+        </member>
+        <member name="M:IInteractive.Interact">
+            <summary>
+            Method to define interaction.
+            </summary>
+        </member>
+        <member name="T:IBreakable">
+            <summary>
+            Interface for breakable objects.
+            </summary>
+        </member>
+        <member name="P:IBreakable.Durability">
+            <summary>
+            Gets or sets the durability of the object.
+            </summary>
+        </member>
+        <member name="M:IBreakable.Break">
+            <summary>
+            Method to define breaking behavior.
+            </summary>
+        </member>
+        <member name="T:ICollectable">
+            <summary>
+            Interface for collectable objects.
+            </summary>
+        </member>
+        <member name="P:ICollectable.IsCollected">
+            <summary>
+            Gets or sets whether the object is collected.
+            </summary>
+        </member>
+        <member name="M:ICollectable.Collect">
+            <summary>
+            Method to define collecting behavior.
+            </summary>
+        </member>
+        <member name="T:TestObject">
+            <summary>
+            TestObject class inheriting from Base and implementing IInteractive, IBreakable, and ICollectable interfaces.
+            </summary>
+        </member>
+        <member name="P:TestObject.Durability">
+            <summary>
+            Gets or sets the durability of the object.
+            </summary>
+        </member>
+        <member name="P:TestObject.IsCollected">
+            <summary>
+            Gets or sets whether the object is collected.
+            </summary>
+        </member>
+        <member name="M:TestObject.#ctor(System.String)">
+            <summary>
+            Constructor for initializing the TestObject class with a name.
+            </summary>
+            <param name="name">The name of the test object.</param>
+        </member>
+        <member name="M:TestObject.Interact">
+            <summary>
+            Defines interaction behavior.
+            </summary>
+        </member>
+        <member name="M:TestObject.Break">
+            <summary>
+            Defines breaking behavior.
+            </summary>
+        </member>
+        <member name="M:TestObject.Collect">
+            <summary>
+            Defines collecting behavior.
+            </summary>
+        </member>
+        <member name="T:Program">
+            <summary>
+            Program class containing the Main method.
+            </summary>
+        </member>
+        <member name="M:Program.Main(System.String[])">
+            <summary>
+            Main method serving as the entry point for the application.
+            </summary>
+        </member>
+    </members>
+</doc>
