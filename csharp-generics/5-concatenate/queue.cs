@@ -1,19 +1,30 @@
 using System;
 
 /// <summary>
-/// Queue of type defined
+/// Represents a queue data structure of type T.
 /// </summary>
-/// <typeparam name="T"></typeparam>
+/// <typeparam name="T">The type of elements stored in the queue.</typeparam>
 public class Queue<T>
 {
     /// <summary>
-    /// Node class struct
+    /// Represents a node in the queue.
     /// </summary>
     public class Node
     {
-        public T? Value;
-        public Node? Next;
+        /// <summary>
+        /// Gets or sets the value of the node.
+        /// </summary>
+        public T? Value { get; set; }
 
+        /// <summary>
+        /// Gets or sets the next node in the queue.
+        /// </summary>
+        public Node? Next { get; set; }
+
+        /// <summary>
+        /// Initializes a new instance of the Node class with the specified value.
+        /// </summary>
+        /// <param name="value">The value to store in the node.</param>
         public Node(T value)
         {
             Value = value;
@@ -26,9 +37,11 @@ public class Queue<T>
     // Last element of the queue
     protected Node? tail;
     // Number of items in queue
-    int count;
+    private int count;
 
-    // Constructor assignment
+    /// <summary>
+    /// Initializes a new instance of the Queue class.
+    /// </summary>
     public Queue()
     {
         head = null;
@@ -37,9 +50,9 @@ public class Queue<T>
     }
 
     /// <summary>
-    /// Adding elements at queue end
+    /// Adds an element to the end of the queue.
     /// </summary>
-    /// <param name="value"></param>
+    /// <param name="value">The value to add to the queue.</param>
     public void Enqueue(T value)
     {
         Node newNode = new Node(value);
@@ -58,9 +71,9 @@ public class Queue<T>
     }
 
     /// <summary>
-    /// Decrements the queue and returns the type 
+    /// Removes and returns the element at the beginning of the queue.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>The element removed from the beginning of the queue, or default(T) if the queue is empty.</returns>
     public T Dequeue()
     {
         if (count == 0)
@@ -78,9 +91,9 @@ public class Queue<T>
     }
 
     /// <summary>
-    /// Returns the first element without removing from queue
+    /// Returns the element at the beginning of the queue without removing it.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>The element at the beginning of the queue, or default(T) if the queue is empty.</returns>
     public T Peek()
     {
         if (count == 0)
@@ -93,7 +106,7 @@ public class Queue<T>
     }
 
     /// <summary>
-    /// Displays all elements in queue
+    /// Displays all elements in the queue to the console.
     /// </summary>
     public void Print()
     {
@@ -112,9 +125,9 @@ public class Queue<T>
     }
 
     /// <summary>
-    /// Combines string or chars together
+    /// Combines all elements in the queue into a single string if the queue is of type String or Char.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>The concatenated string, or null if concatenation is not possible.</returns>
     public string? Concatenate()
     {
         if (count == 0)
@@ -146,18 +159,18 @@ public class Queue<T>
     }
 
     /// <summary>
-    /// Returns type of generic
+    /// Returns the type of elements stored in the queue.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>The type of elements stored in the queue.</returns>
     public Type CheckType()
     {
         return typeof(T);
     }
 
     /// <summary>
-    /// Returns the number of items
+    /// Returns the number of elements in the queue.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>The number of elements in the queue.</returns>
     public int Count()
     {
         return count;
