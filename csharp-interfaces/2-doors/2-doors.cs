@@ -1,70 +1,72 @@
 ﻿using System;
-using System.Collections.Generic;
-
 
 /// <summary>
-/// interace for interactions
+/// Interface for interactive objects.
 /// </summary>
-public interface IInteractive{
-
+public interface IInteractive
+{
     /// <summary>
-    /// interact method
+    /// Defines interaction behavior.
     /// </summary>
-    public void Interact();
-}
-
-
-/// <summary>
-/// interface for breakables
-/// </summary>
-public interface IBreakable {
-
-    // durability
-    public int durability { get ; set;}
-
-    /// <summary>
-    /// breaking stuff
-    /// </summary>
-    public void Break();
-}
-
-
-/// <summary>
-/// collecting stuff
-/// </summary>
-public interface ICollectable{
-
-    // collecting
-    public bool isCollected { get ; set; }
-    /// <summary>
-    /// for collecting objects.
-    /// </summary>
-    public void Collect();
+    void Interact();
 }
 
 /// <summary>
-/// Door class for controlling a door
+/// Abstract base class representing an entity with a name.
 /// </summary>
-public class Door : Base , IInteractive{
+public abstract class Base
+{
+    /// <summary>
+    /// Gets or sets the name of the entity.
+    /// </summary>
+    public string Name { get; set; }
 
-    public Door(string value = "Door"){
-        name = value;
+    /// <summary>
+    /// Initializes a new instance of the Base class with a name.
+    /// </summary>
+    /// <param name="name">The name of the entity. Default is "Door".</param>
+    public Base(string name = "Door")
+    {
+        Name = name;
     }
 
-    public void Interact(){
-        Console.WriteLine($"You try to open the {name}. It's locked.");
+    /// <summary>
+    /// Returns a string representation of the object.
+    /// </summary>
+    /// <returns>A string in the format: "{Name} is a {Type}".</returns>
+    public override string ToString()
+    {
+        return $"{Name} is a {GetType().Name}";
     }
 }
 
-
 /// <summary>
-/// base class for everythign.
+/// Class representing a Door, inheriting from Base and implementing IInteractive.
 /// </summary>
-public abstract class Base{
+public class Door : Base, IInteractive
+{
+    /// <summary>
+    /// Initializes a new instance of the Door class with a name.
+    /// </summary>
+    /// <param name="name">The name of the door. Default is "Door".</param>
+    public Door(string name = "Door") : base(name)
+    {
+    }
 
-    public String? name { get ; set; }
+    /// <summary>
+    /// Defines the interaction behavior for the door.
+    /// </summary>
+    public void Interact()
+    {
+        Console.WriteLine($"You try to open the {Name}. It's locked.");
+    }
+}
 
-    public override String ToString(){
-        return $"{name} is a {this.GetType()}";
+class Program
+{
+    static void Main(string[] args)
+    {
+        Door door = new Door();
+        door.Interact();
     }
 }
