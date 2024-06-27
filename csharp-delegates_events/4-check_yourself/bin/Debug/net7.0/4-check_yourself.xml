@@ -6,7 +6,7 @@
     <members>
         <member name="T:CurrentHPArgs">
             <summary>
-            Class representing current health arguments, inheriting from EventArgs.
+            Class representing current health arguments.
             </summary>
         </member>
         <member name="P:CurrentHPArgs.CurrentHp">
@@ -22,27 +22,27 @@
         </member>
         <member name="T:Modifier">
             <summary>
-            Enumeration representing different levels of modifiers for calculations.
+            Represents the different levels of modifiers for calculations.
             </summary>
         </member>
         <member name="F:Modifier.Weak">
             <summary>
-            Weak modifier.
+            Weak value.
             </summary>
         </member>
         <member name="F:Modifier.Base">
             <summary>
-            Base modifier.
+            Base value.
             </summary>
         </member>
         <member name="F:Modifier.Strong">
             <summary>
-            Strong modifier.
+            Strong value.
             </summary>
         </member>
         <member name="T:CalculateModifier">
             <summary>
-            Delegate for calculating modified values.
+            Delegate to calculate modified values.
             </summary>
             <param name="baseValue">The base value to modify.</param>
             <param name="modifier">The modifier to apply.</param>
@@ -50,7 +50,7 @@
         </member>
         <member name="T:Player">
             <summary>
-            Class representing a player with health properties and methods.
+            Represents a player with health properties and methods.
             </summary>
         </member>
         <member name="E:Player.HPCheck">
@@ -60,7 +60,7 @@
         </member>
         <member name="T:Player.CalculateHealth">
             <summary>
-            Delegate for calculating health changes.
+            Delegate to calculate health changes.
             </summary>
             <param name="amount">The amount of health change.</param>
         </member>
@@ -73,13 +73,13 @@
         </member>
         <member name="M:Player.TakeDamage(System.Single)">
             <summary>
-            Method to inflict damage on the player.
+            Inflicts damage on the player.
             </summary>
             <param name="damage">The amount of damage to inflict.</param>
         </member>
         <member name="M:Player.HealDamage(System.Single)">
             <summary>
-            Method to heal the player.
+            Heals the player.
             </summary>
             <param name="heal">The amount of healing to apply.</param>
         </member>
@@ -104,27 +104,9 @@
             <param name="sender">The source of the event.</param>
             <param name="e">The event data.</param>
         </member>
-        <member name="M:Player.HPValueWarning(System.Object,CurrentHPArgs)">
-            <summary>
-            Provides a warning when the player's health is low or zero.
-            </summary>
-            <param name="sender">The source of the event.</param>
-            <param name="e">The event data.</param>
-        </member>
-        <member name="M:Player.OnCheckStatus(CurrentHPArgs)">
-            <summary>
-            Invokes the HPCheck event and checks the player's status.
-            </summary>
-            <param name="e">The event data.</param>
-        </member>
         <member name="M:Player.PrintHealth">
             <summary>
             Prints the current health status of the player.
-            </summary>
-        </member>
-        <member name="T:Program">
-            <summary>
-            Main class to demonstrate the Player class functionality.
             </summary>
         </member>
     </members>
