@@ -1,5 +1,4 @@
 using System;
-using System.Text;
 
 /// <summary>
 /// Queue of type defined
@@ -62,39 +61,35 @@ public class Queue<T>
     /// Decrements the queue and returns the type 
     /// </summary>
     /// <returns></returns>
-    public T? Dequeue()
+    public T Dequeue()
     {
-        T? currentValue;
-
         if (count == 0)
         {
             Console.WriteLine("Queue is empty");
-            return default(T);
+            return default(T)!; // Return default value of T
         }
         else
         {
             count--;
-
-            currentValue = head!.Value;
+            T currentValue = head!.Value!;
             head = head.Next;
+            return currentValue;
         }
-
-        return currentValue;
     }
 
     /// <summary>
     /// Returns the first element without removing from queue
     /// </summary>
     /// <returns></returns>
-    public T? Peek()
+    public T Peek()
     {
         if (count == 0)
         {
             Console.WriteLine("Queue is empty");
-            return default(T);
+            return default(T)!; // Return default value of T
         }
 
-        return head!.Value;
+        return head!.Value!;
     }
 
     /// <summary>
@@ -117,9 +112,9 @@ public class Queue<T>
     }
 
     /// <summary>
-    /// Concatenates all string or char values in the queue.
+    /// Combines string or chars together
     /// </summary>
-    /// <returns>Concatenated string or null if conditions are not met.</returns>
+    /// <returns></returns>
     public string? Concatenate()
     {
         if (count == 0)
@@ -134,15 +129,20 @@ public class Queue<T>
             return null;
         }
 
-        StringBuilder sb = new StringBuilder();
+        string outputValue = "";
+
         Node? current = head;
         while (current != null)
         {
-            sb.Append(current.Value);
+            outputValue += current.Value;
+            if (CheckType() == typeof(string))
+            {
+                outputValue += " ";
+            }
             current = current.Next;
         }
 
-        return sb.ToString();
+        return outputValue;
     }
 
     /// <summary>
@@ -161,66 +161,5 @@ public class Queue<T>
     public int Count()
     {
         return count;
-    }
-}
-
-class Program
-{
-    static void Main()
-    {
-        // Example usage of Queue<int>
-        Queue<int> intQueue = new Queue<int>();
-        intQueue.Enqueue(1);
-        intQueue.Enqueue(2);
-        intQueue.Enqueue(3);
-
-        Console.WriteLine("Queue elements:");
-        intQueue.Print();
-
-        int dequeueValue = intQueue.Dequeue() ?? default;
-        Console.WriteLine($"Dequeued value: {dequeueValue}");
-
-        int peekValue = intQueue.Peek() ?? default;
-        Console.WriteLine($"Peeked value: {peekValue}");
-
-        Console.WriteLine($"Queue count: {intQueue.Count()}");
-
-        // Example usage of Queue<string>
-        Queue<string> stringQueue = new Queue<string>();
-        stringQueue.Enqueue("Hello");
-        stringQueue.Enqueue("World");
-
-        Console.WriteLine("\nString Queue elements:");
-        stringQueue.Print();
-
-        string concatenatedString = stringQueue.Concatenate();
-        Console.WriteLine($"Concatenated string: {concatenatedString}");
-
-        Console.WriteLine($"String Queue count: {stringQueue.Count()}");
-
-        // Example usage of Queue<char>
-        Queue<char> charQueue = new Queue<char>();
-        charQueue.Enqueue('A');
-        charQueue.Enqueue('B');
-        charQueue.Enqueue('C');
-
-        Console.WriteLine("\nChar Queue elements:");
-        charQueue.Print();
-
-        string concatenatedChars = charQueue.Concatenate();
-        Console.WriteLine($"Concatenated chars: {concatenatedChars}");
-
-        Console.WriteLine($"Char Queue count: {charQueue.Count()}");
-
-        // Example for error case
-        Queue<double> doubleQueue = new Queue<double>();
-        doubleQueue.Enqueue(1.1);
-        doubleQueue.Enqueue(2.2);
-
-        string concatenatedDouble = doubleQueue.Concatenate();
-        if (concatenatedDouble == null)
-        {
-            Console.WriteLine("\nConcatenation failed due to incorrect type.");
-        }
     }
 }
