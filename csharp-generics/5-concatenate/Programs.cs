@@ -1,7 +1,13 @@
 using System;
 
+/// <summary>
+/// Class demonstrating the usage of generic Queue class.
+/// </summary>
 class Program
 {
+    /// <summary>
+    /// Main entry point of the program.
+    /// </summary>
     static void Main()
     {
         // Example usage of Queue<int>
