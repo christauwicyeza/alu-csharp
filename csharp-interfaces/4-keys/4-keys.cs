@@ -1,171 +1,187 @@
 ﻿using System;
-using System.Collections.Generic;
-
-
+/// <summary>
+/// abstract class Base
+/// </summary>
+public abstract class Base {
+/// <summary>
+/// name property
+/// </summary>
+    public string? name { get ; set; }
+/// <summary>
+/// ToString() method
+/// </summary>
+/// <returns></returns>
+    public override string ToString()
+    {
+        return $"{name} is a {GetType().Name}";
+    }
+}
 
 /// <summary>
-/// interace for interactions
+/// IInteractive interface
 /// </summary>
-public interface IInteractive{
+public interface IInteractive {
 
-    /// <summary>
-    /// interact method
-    /// </summary>
+/// <summary>
+/// interact method
+/// </summary>
     public void Interact();
 }
 
-
 /// <summary>
-/// interface for breakables
+/// IBreakable interface
 /// </summary>
 public interface IBreakable {
 
-    // durability
+/// <summary>
+/// durability
+/// </summary>
     public int durability { get ; set;}
-
-    /// <summary>
-    /// breaking stuff
-    /// </summary>
+/// <summary>
+/// break method
+/// </summary>
     public void Break();
 }
 
-
 /// <summary>
-/// collecting stuff
+/// ICollectable interface
 /// </summary>
 public interface ICollectable{
-
-    // collecting
+/// <summary>
+/// isCollected
+/// </summary>
     public bool isCollected { get ; set; }
-    /// <summary>
-    /// for collecting objects.
-    /// </summary>
+
+/// <summary>
+/// collect method
+/// </summary>
     public void Collect();
+
 }
 
 /// <summary>
-/// Door class for controlling a door
+/// class Door
 /// </summary>
 public class Door : Base , IInteractive{
 
+/// <summary>
+/// constructor that sets the value of name
+/// </summary>
+/// <param name="value"></param>
     public Door(string value = "Door"){
         name = value;
     }
 
+/// <summary>
+/// Interact() implementation
+/// </summary>
     public void Interact(){
         Console.WriteLine($"You try to open the {name}. It's locked.");
     }
 }
 
+/// <summary>
+/// decoration base inheriting from base, iinteractive, ibreakable
+/// </summary>
+public class Decoration : Base, IInteractive, IBreakable {
 
 /// <summary>
-///  decoration class defination
+/// isquestitem prp
 /// </summary>
-public class Decoration : Base , IInteractive, IBreakable{
-    public bool isQuestItem = false;
+    public bool isQuestItem { get; set; }
 
-    public int durability { get ; set; }
+/// <summary>
+/// durability prp
+/// </summary>
+    public int durability { get; set; } 
 
-
-    public Decoration(string CName = "Decoration", int durability = 1, bool isQuestItem = false){
+/// <summary>
+/// Decoration
+/// </summary>
+/// <param name="Name"></param>
+/// <param name="durability"></param>
+/// <param name="isQuestItem"></param>
+/// <exception cref="ArgumentException"></exception>
+    public Decoration(string Name = "Decoration", int durability = 1, bool isQuestItem= false) {
 
         this.isQuestItem = isQuestItem;
-        name = CName;
-        if(durability <= 0){
-            throw new Exception("Durability must be greater than 0");
-        }else{
+        name = Name;
+
+        if (durability <= 0) {
+            throw new ArgumentException("Durability must be greater than 0");
+        }
+        else {
             this.durability = durability;
         }
-     
+
     }
 
-
 /// <summary>
-/// called when interacting with an object
+/// interact implementation
 /// </summary>
-    public void Interact(){
-
-        if(durability <= 0 ){
+    public void Interact()
+    {
+        if (durability <= 0) {
             Console.WriteLine($"The {name} has been broken.");
-        }else if(isQuestItem){
+        }
+        else if (isQuestItem) {
             Console.WriteLine($"You look at the {name}. There's a key inside.");
-        }else{
+        }
+        else {
             Console.WriteLine($"You look at the {name}. Not much to see here.");
         }
-     
     }
 
-
 /// <summary>
-/// breaking an object function
+/// break implementation
 /// </summary>
-    public void Break(){
-        this.durability--;
-
-        if(durability > 0){
-            Console.WriteLine($"You hit the {name}. It cracks.");
-        }
-
-        if(durability == 0){
-            Console.WriteLine($"You smash the {name}. What a mess.");
-        }
-
-        if(durability < 0){
+    public void Break() {
+       
+            this.durability--;
+            if (durability > 0) {
+                Console.WriteLine($"You hit the {name}. It cracks.");
+            }
+            if (durability == 0) {
+                Console.WriteLine($"You smash the {name}. What a mess.");
+            }
+        
+            if (durability < 0) {
             Console.WriteLine($"The {name} is already broken.");
         }
     }
-
 }
 
+/// <summary>
+/// class key inheriting from base and iscollectable
+/// </summary>
+public class Key: Base, ICollectable {
 
 /// <summary>
-/// method for picking up key.
+/// iscollected prp
 /// </summary>
-public class Key : Base , ICollectable {
-
+    public bool isCollected { get; set; }
 
 /// <summary>
-/// check collections options.
+/// key constructor
 /// </summary>
-    public bool isCollected { set ; get ; }
-
-
-/// <summary>
-/// manages default setup values
-/// </summary>
-/// <param name="name"></param>
+/// <param name="Name"></param>
 /// <param name="isCollected"></param>
-    public Key (string name = "Key", bool isCollected = false){
-        this.name = name;
+    public Key(string Name = "Key", bool isCollected = false) {
+
+        name = Name;
         this.isCollected = isCollected;
     }
 
-
 /// <summary>
-///  manages collections states
+/// collect method
 /// </summary>
-    public void Collect(){
-        if(!isCollected){
+    public void Collect() {
+        if (!isCollected) {
             isCollected = true;
             Console.WriteLine($"You pick up the {name}.");
-        }else{
-               Console.WriteLine($"You have already picked up the {name}.");
         }
-
-    }
-
-
-}
-
-
-/// <summary>
-/// base class for everythign.
-/// </summary>
-public abstract class Base{
-
-    public string? name { get ; set; }
-
-    public override String ToString(){
-        return $"{name} is a {this.GetType()}";
+        else {
+            Console.WriteLine($"You have already picked up the {name}.");
+        }
     }
 }
