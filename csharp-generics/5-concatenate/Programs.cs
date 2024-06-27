@@ -13,10 +13,10 @@ class Program
         Console.WriteLine("Queue elements:");
         intQueue.Print();
 
-        int dequeueValue = intQueue.Dequeue();
+        int? dequeueValue = intQueue.Dequeue(); // Use nullable int to handle null return
         Console.WriteLine($"Dequeued value: {dequeueValue}");
 
-        int peekValue = intQueue.Peek();
+        int? peekValue = intQueue.Peek(); // Use nullable int to handle null return
         Console.WriteLine($"Peeked value: {peekValue}");
 
         Console.WriteLine($"Queue count: {intQueue.Count()}");
@@ -29,7 +29,7 @@ class Program
         Console.WriteLine("\nString Queue elements:");
         stringQueue.Print();
 
-        string concatenatedString = stringQueue.Concatenate();
+        string? concatenatedString = stringQueue.Concatenate(); // Use nullable string to handle null return
         if (concatenatedString != null)
         {
             Console.WriteLine($"Concatenated string: {concatenatedString}");
@@ -46,7 +46,7 @@ class Program
         Console.WriteLine("\nChar Queue elements:");
         charQueue.Print();
 
-        string concatenatedChars = charQueue.Concatenate();
+        string? concatenatedChars = charQueue.Concatenate(); // Use nullable string to handle null return
         if (concatenatedChars != null)
         {
             Console.WriteLine($"Concatenated chars: {concatenatedChars}");
@@ -59,7 +59,7 @@ class Program
         doubleQueue.Enqueue(1.1);
         doubleQueue.Enqueue(2.2);
 
-        string concatenatedDouble = doubleQueue.Concatenate();
+        string? concatenatedDouble = doubleQueue.Concatenate(); // Use nullable string to handle null return
         if (concatenatedDouble == null)
         {
             Console.WriteLine("\nConcatenation failed due to incorrect type.");
