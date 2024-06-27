@@ -6,6 +6,8 @@
     <RootNamespace>_5_concatenate</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <DocumentationFile>bin/Debug/netcoreapp2.1/6-concatenate.xml</DocumentationFile>
   </PropertyGroup>
 
 </Project>
