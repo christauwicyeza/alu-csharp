@@ -1,30 +1,22 @@
 ﻿using System;
 
+
+
 /// <summary>
-/// Abstract Base class representing an entity with a name.
+/// base class for inheritance
 /// </summary>
-public abstract class Base
-{
-    /// <summary>
-    /// Gets or sets the name of the entity.
-    /// </summary>
-    public string Name { get; set; }
+public abstract class Base{
 
-    /// <summary>
-    /// Constructor for initializing the Base class with a name.
-    /// </summary>
-    /// <param name="name">The name of the entity.</param>
-    public Base(string name)
-    {
-        Name = name;
-    }
+/// <summary>
+/// holds the name
+/// </summary>
+    public String? name;
 
-    /// <summary>
-    /// Overrides the default ToString method to return a formatted string indicating the type and name.
-    /// </summary>
-    /// <returns>A string representation of the object in the format: "{Name} is a {Type}".</returns>
-    public override string ToString()
-    {
-        return $"{Name} is a {GetType().Name}";
+/// <summary>
+/// override to display custom properties
+/// </summary>
+/// <returns></returns>
+    public override String ToString(){
+        return $"{name} is a {this.GetType()}";
     }
 }
