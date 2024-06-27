@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>3-decorations</name>
+    </assembly>
+    <members>
+        <member name="T:IInteractive">
+            <summary>
+            Interface for interactive objects.
+            </summary>
+        </member>
+        <member name="M:IInteractive.Interact">
+            <summary>
+            Defines interaction behavior.
+            </summary>
+        </member>
+        <member name="T:IBreakable">
+            <summary>
+            Interface for breakable objects.
+            </summary>
+        </member>
+        <member name="P:IBreakable.Durability">
+            <summary>
+            Gets or sets the durability of the object.
+            </summary>
+        </member>
+        <member name="M:IBreakable.Break">
+            <summary>
+            Method to define breaking behavior.
+            </summary>
+        </member>
+        <member name="T:Base">
+            <summary>
+            Abstract base class representing an entity with a name.
+            </summary>
+        </member>
+        <member name="P:Base.Name">
+            <summary>
+            Gets or sets the name of the entity.
+            </summary>
+        </member>
+        <member name="M:Base.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the Base class with a name.
+            </summary>
+            <param name="name">The name of the entity. Default is "Decoration".</param>
+        </member>
+        <member name="M:Base.ToString">
+            <summary>
+            Returns a string representation of the object.
+            </summary>
+            <returns>A string in the format: "{Name} is a {Type}".</returns>
+        </member>
+        <member name="T:Decoration">
+            <summary>
+            Class representing a Decoration, inheriting from Base, IInteractive, and IBreakable.
+            </summary>
+        </member>
+        <member name="P:Decoration.Durability">
+            <summary>
+            Gets or sets the durability of the decoration.
+            </summary>
+        </member>
+        <member name="P:Decoration.IsQuestItem">
+            <summary>
+            Gets or sets whether the decoration is a quest item.
+            </summary>
+        </member>
+        <member name="M:Decoration.#ctor(System.String,System.Int32,System.Boolean)">
+            <summary>
+            Constructor for initializing a Decoration object with name, durability, and quest item status.
+            </summary>
+            <param name="name">The name of the decoration. Default is "Decoration".</param>
+            <param name="durability">The durability of the decoration. Default is 1.</param>
+            <param name="isQuestItem">Specifies if the decoration is a quest item. Default is false.</param>
+        </member>
+        <member name="M:Decoration.Interact">
+            <summary>
+            Defines the interaction behavior for the decoration.
+            </summary>
+        </member>
+        <member name="M:Decoration.Break">
+            <summary>
+            Defines the breaking behavior for the decoration.
+            </summary>
+        </member>
+        <member name="T:Program">
+            <summary>
+            Main class to demonstrate the functionality of Decoration.
+            </summary>
+        </member>
+    </members>
+</doc>
