@@ -2,46 +2,6 @@
 
 namespace InteractiveObjects
 {
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            // Create a Door instance
-            Door door = new Door("Front Door");
-
-            // Interact with the door
-            Console.WriteLine("--- Interacting with the Door ---");
-            door.Interact();
-            Console.WriteLine();
-
-            // Create a Decoration instance
-            Decoration decoration = new Decoration("Vase", 2, false);
-
-            // Interact with the decoration
-            Console.WriteLine("--- Interacting with the Decoration ---");
-            decoration.Interact();
-            decoration.Break();
-            decoration.Break();
-            decoration.Break();
-            Console.WriteLine();
-
-            // Create a Key instance
-            Key key = new Key("Golden Key");
-
-            // Collect the key
-            Console.WriteLine("--- Collecting the Key ---");
-            key.Collect();
-            key.Collect();
-            Console.WriteLine();
-
-            // Display object details
-            Console.WriteLine("--- Object Details ---");
-            Console.WriteLine(door);
-            Console.WriteLine(decoration);
-            Console.WriteLine(key);
-        }
-    }
-
     /// <summary>
     /// Interface for interactions
     /// </summary>
