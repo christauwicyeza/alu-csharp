@@ -1,271 +1,221 @@
 ﻿using System;
-using System.Collections.Generic;
-
 /// <summary>
-/// Interface for interactions
+/// abstract class Base
 /// </summary>
-public interface IInteractive
-{
-    /// <summary>
-    /// Interact method.
-    /// </summary>
-    void Interact();
-}
-
+public abstract class Base {
 /// <summary>
-/// Interface for breakable objects.
+/// name property
 /// </summary>
-public interface IBreakable
-{
-    /// <summary>
-    /// Durability of the object.
-    /// </summary>
-    int durability { get; set; }
-
-    /// <summary>
-    /// Breaks the object.
-    /// </summary>
-    void Break();
-}
-
+    public string? name { get ; set; }
 /// <summary>
-/// Interface for collectable objects.
+/// ToString() method
 /// </summary>
-public interface ICollectable
-{
-    /// <summary>
-    /// Indicates if the object has been collected.
-    /// </summary>
-    bool isCollected { get; set; }
-
-    /// <summary>
-    /// Collects the object.
-    /// </summary>
-    void Collect();
-}
-
-/// <summary>
-/// Class representing a door.
-/// </summary>
-public class Door : Base, IInteractive
-{
-    /// <summary>
-    /// Constructs a door with a given name.
-    /// </summary>
-    /// <param name="value">The name of the door.</param>
-    public Door(string value = "Door")
+/// <returns></returns>
+    public override string ToString()
     {
+        return $"{name} is a {GetType().Name}";
+    }
+}
+
+/// <summary>
+/// IInteractive interface
+/// </summary>
+public interface IInteractive {
+
+/// <summary>
+/// interact method
+/// </summary>
+    public void Interact();
+}
+
+/// <summary>
+/// IBreakable interface
+/// </summary>
+public interface IBreakable {
+
+/// <summary>
+/// durability
+/// </summary>
+    public int durability { get ; set;}
+/// <summary>
+/// break method
+/// </summary>
+    public void Break();
+}
+
+/// <summary>
+/// ICollectable interface
+/// </summary>
+public interface ICollectable{
+/// <summary>
+/// isCollected
+/// </summary>
+    public bool isCollected { get ; set; }
+
+/// <summary>
+/// collect method
+/// </summary>
+    public void Collect();
+
+}
+
+/// <summary>
+/// class Door
+/// </summary>
+public class Door : Base , IInteractive{
+
+/// <summary>
+/// constructor that sets the value of name
+/// </summary>
+/// <param name="value"></param>
+    public Door(string value = "Door"){
         name = value;
     }
 
-    /// <summary>
-    /// Interacts with the door.
-    /// </summary>
-    public void Interact()
-    {
+/// <summary>
+/// Interact() implementation
+/// </summary>
+    public void Interact(){
         Console.WriteLine($"You try to open the {name}. It's locked.");
     }
 }
 
 /// <summary>
-/// Class representing a decoration object.
+/// decoration base inheriting from base, iinteractive, ibreakable
 /// </summary>
-public class Decoration : Base, IInteractive, IBreakable
-{
-    /// <summary>
-    /// Indicates if the decoration is a quest item.
-    /// </summary>
-    public bool isQuestItem = false;
+public class Decoration : Base, IInteractive, IBreakable {
 
-    /// <summary>
-    /// Durability of the decoration.
-    /// </summary>
-    public int durability { get; set; }
+/// <summary>
+/// isquestitem prp
+/// </summary>
+    public bool isQuestItem { get; set; }
 
-    /// <summary>
-    /// Constructs a decoration object with specified parameters.
-    /// </summary>
-    /// <param name="CName">The name of the decoration.</param>
-    /// <param name="durability">The durability of the decoration.</param>
-    /// <param name="isQuestItem">Indicates if the decoration is a quest item.</param>
-    public Decoration(string CName = "Decoration", int durability = 1, bool isQuestItem = false)
-    {
+/// <summary>
+/// durability prp
+/// </summary>
+    public int durability { get; set; } 
+
+/// <summary>
+/// Decoration
+/// </summary>
+/// <param name="Name"></param>
+/// <param name="durability"></param>
+/// <param name="isQuestItem"></param>
+/// <exception cref="ArgumentException"></exception>
+    public Decoration(string Name = "Decoration", int durability = 1, bool isQuestItem= false) {
+
         this.isQuestItem = isQuestItem;
-        name = CName;
-        if (durability <= 0)
-        {
-            throw new Exception("Durability must be greater than 0");
+        name = Name;
+
+        if (durability <= 0) {
+            throw new ArgumentException("Durability must be greater than 0");
         }
-        else
-        {
+        else {
             this.durability = durability;
         }
+
     }
 
-    /// <summary>
-    /// Interacts with the decoration object.
-    /// </summary>
+/// <summary>
+/// interact implementation
+/// </summary>
     public void Interact()
     {
-        if (durability <= 0)
-        {
+        if (durability <= 0) {
             Console.WriteLine($"The {name} has been broken.");
         }
-        else if (isQuestItem)
-        {
+        else if (isQuestItem) {
             Console.WriteLine($"You look at the {name}. There's a key inside.");
         }
-        else
-        {
+        else {
             Console.WriteLine($"You look at the {name}. Not much to see here.");
         }
     }
 
-    /// <summary>
-    /// Breaks the decoration object.
-    /// </summary>
-    public void Break()
-    {
-        this.durability--;
-
-        if (durability > 0)
-        {
-            Console.WriteLine($"You hit the {name}. It cracks.");
-        }
-
-        if (durability == 0)
-        {
-            Console.WriteLine($"You smash the {name}. What a mess.");
-        }
-
-        if (durability < 0)
-        {
+/// <summary>
+/// break implementation
+/// </summary>
+    public void Break() {
+       
+            this.durability--;
+            if (durability > 0) {
+                Console.WriteLine($"You hit the {name}. It cracks.");
+            }
+            if (durability == 0) {
+                Console.WriteLine($"You smash the {name}. What a mess.");
+            }
+        
+            if (durability < 0) {
             Console.WriteLine($"The {name} is already broken.");
         }
     }
 }
 
 /// <summary>
-/// Class representing a key object.
+/// class key inheriting from base and iscollectable
 /// </summary>
-public class Key : Base, ICollectable
-{
-    /// <summary>
-    /// Indicates if the key has been collected.
-    /// </summary>
+public class Key: Base, ICollectable {
+
+/// <summary>
+/// iscollected prp
+/// </summary>
     public bool isCollected { get; set; }
 
-    /// <summary>
-    /// Constructs a key object with specified parameters.
-    /// </summary>
-    /// <param name="name">The name of the key.</param>
-    /// <param name="isCollected">Indicates if the key is initially collected.</param>
-    public Key(string name = "Key", bool isCollected = false)
-    {
-        this.name = name;
+/// <summary>
+/// key constructor
+/// </summary>
+/// <param name="Name"></param>
+/// <param name="isCollected"></param>
+    public Key(string Name = "Key", bool isCollected = false) {
+
+        name = Name;
         this.isCollected = isCollected;
     }
 
-    /// <summary>
-    /// Collects the key.
-    /// </summary>
-    public void Collect()
-    {
-        if (!isCollected)
-        {
+/// <summary>
+/// collect method
+/// </summary>
+    public void Collect() {
+        if (!isCollected) {
             isCollected = true;
             Console.WriteLine($"You pick up the {name}.");
         }
-        else
-        {
+        else {
             Console.WriteLine($"You have already picked up the {name}.");
         }
     }
 }
 
 /// <summary>
-/// Class to perform actions on room objects.
+/// roomobjects class
 /// </summary>
-public class RoomObjects
-{
-    /// <summary>
-    /// Iterates over a list of room objects and performs actions based on their type.
-    /// </summary>
-    /// <param name="roomObjects">List of room objects.</param>
-    /// <param name="type">Type of action to perform (IInteractive, IBreakable, ICollectable).</param>
-    public static void IterateAction(List<Base> roomObjects, Type? type)
-    {
-        foreach (var temp in roomObjects)
-        {
+public class RoomObjects {
+
+/// <summary>
+/// iterateaction method
+/// </summary>
+/// <param name="roomObjects"></param>
+/// <param name="type"></param>
+    public static void IterateAction(List<Base> roomObjects, Type type) {
+
+        foreach (var obj in roomObjects) {
+
             if (typeof(Door).GetInterfaces().Contains(type))
             {
-                IInteractive? current = temp as IInteractive;
+                IInteractive? current = obj as IInteractive;
                 current?.Interact();
             }
             else if (typeof(Decoration).GetInterfaces().Contains(type))
             {
-                IBreakable? current = temp as IBreakable;
+                IBreakable? current = obj as IBreakable;
                 current?.Break();
             }
             else if (typeof(Key).GetInterfaces().Contains(type))
             {
-                ICollectable? current = temp as ICollectable;
+                ICollectable? current = obj as ICollectable;
                 current?.Collect();
             }
-        }
+      }
     }
 }
 
-/// <summary>
-/// Base class for all objects.
-/// </summary>
-public abstract class Base
-{
-    /// <summary>
-    /// The name of the object.
-    /// </summary>
-    public string? name { get; set; }
-
-    /// <summary>
-    /// Returns a string representation of the object.
-    /// </summary>
-    /// <returns>A string representation of the object.</returns>
-    public override string ToString()
-    {
-        return $"{name} is a {this.GetType()}";
-    }
-}
-
-/// <summary>
-/// Main class to demonstrate object interactions.
-/// </summary>
-public class Program
-{
-    /// <summary>
-    /// Main method to run the program.
-    /// </summary>
-    /// <param name="args">Command-line arguments (not used).</param>
-    public static void Main(string[] args)
-    {
-        // Creating instances of different objects
-        Door door = new Door("Front Door");
-        Decoration vase = new Decoration("Vase", 2, false);
-        Key goldenKey = new Key("Golden Key");
-
-        // List of room objects
-        List<Base> roomObjects = new List<Base> { door, vase, goldenKey };
-
-        // Performing interactions based on object types
-        Console.WriteLine("--- Performing interactions in the room ---");
-        RoomObjects.IterateAction(roomObjects, typeof(IInteractive));
-        RoomObjects.IterateAction(roomObjects, typeof(IBreakable));
-        RoomObjects.IterateAction(roomObjects, typeof(ICollectable));
-
-        // Displaying object details
-        Console.WriteLine("--- Object Details ---");
-        foreach (var obj in roomObjects)
-        {
-            Console.WriteLine(obj);
-        }
-    }
-}
