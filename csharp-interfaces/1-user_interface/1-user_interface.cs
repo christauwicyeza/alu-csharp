@@ -5,12 +5,15 @@
 /// </summary>
 public abstract class Base
 {
-    // Name of the entity
+    /// <summary>
+    /// Gets or sets the name of the entity.
+    /// </summary>
     public string? name { get; set; }
 
     /// <summary>
     /// Returns a string representation of the object.
     /// </summary>
+    /// <returns>A string that represents the current object.</returns>
     public override string ToString()
     {
         return $"{name} is a {this.GetType().Name}";
@@ -33,7 +36,9 @@ public interface IInteractive
 /// </summary>
 public interface IBreakable
 {
-    // Durability of the object
+    /// <summary>
+    /// Gets or sets the durability of the object.
+    /// </summary>
     int durability { get; set; }
 
     /// <summary>
@@ -47,7 +52,9 @@ public interface IBreakable
 /// </summary>
 public interface ICollectable
 {
-    // Indicates if the object is collected
+    /// <summary>
+    /// Gets or sets a value indicating whether the object is collected.
+    /// </summary>
     bool isCollected { get; set; }
 
     /// <summary>
@@ -61,7 +68,14 @@ public interface ICollectable
 /// </summary>
 public class TestObject : Base, IInteractive, IBreakable, ICollectable
 {
+    /// <summary>
+    /// Gets or sets the durability of the object.
+    /// </summary>
     public int durability { get; set; }
+
+    /// <summary>
+    /// Gets or sets a value indicating whether the object is collected.
+    /// </summary>
     public bool isCollected { get; set; }
 
     /// <summary>
