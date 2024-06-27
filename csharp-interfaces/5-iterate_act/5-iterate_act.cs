@@ -219,3 +219,177 @@ public class RoomObjects {
     }
 }
 
+using System;
+
+/// Base abstract class
+public abstract class Base
+{
+    /// Name property
+    public string? name { get; set; }
+
+    /// Override ToString method
+    public override string ToString()
+    {
+        return $"{name} is a {GetType().Name}";
+    }
+}
+
+/// Interface for interactive objects
+public interface IInteractive
+{
+    /// Interact method
+    void Interact();
+}
+
+/// Interface for breakable objects
+public interface IBreakable
+{
+    /// Durability property
+    int durability { get; set; }
+
+    /// Break method
+    void Break();
+}
+
+/// Interface for collectable objects
+public interface ICollectable
+{
+    /// IsCollected property
+    bool isCollected { get; set; }
+
+    /// Collect method
+    void Collect();
+}
+
+/// Door class implementing IInteractive
+public class Door : Base, IInteractive
+{
+    /// Constructor to set the name
+    public Door(string value = "Door")
+    {
+        name = value;
+    }
+
+    /// Implementation of Interact method
+    public void Interact()
+    {
+        Console.WriteLine($"You try to open the {name}. It's locked.");
+    }
+}
+
+/// Decoration class implementing IInteractive and IBreakable
+public class Decoration : Base, IInteractive, IBreakable
+{
+    /// IsQuestItem property
+    public bool isQuestItem { get; set; }
+
+    /// Durability property
+    public int durability { get; set; }
+
+    /// Constructor to set properties
+    public Decoration(string Name = "Decoration", int durability = 1, bool isQuestItem = false)
+    {
+        this.isQuestItem = isQuestItem;
+        name = Name;
+
+        if (durability <= 0)
+        {
+            throw new ArgumentException("Durability must be greater than 0");
+        }
+        else
+        {
+            this.durability = durability;
+        }
+    }
+
+    /// Implementation of Interact method
+    public void Interact()
+    {
+        if (durability <= 0)
+        {
+            Console.WriteLine($"The {name} has been broken.");
+        }
+        else if (isQuestItem)
+        {
+            Console.WriteLine($"You look at the {name}. There's a key inside.");
+        }
+        else
+        {
+            Console.WriteLine($"You look at the {name}. Not much to see here.");
+        }
+    }
+
+    /// Implementation of Break method
+    public void Break()
+    {
+        durability--;
+
+        if (durability > 0)
+        {
+            Console.WriteLine($"You hit the {name}. It cracks.");
+        }
+        else if (durability == 0)
+        {
+            Console.WriteLine($"You smash the {name}. What a mess.");
+        }
+        else
+        {
+            Console.WriteLine($"The {name} is already broken.");
+        }
+    }
+}
+
+/// Key class implementing ICollectable
+public class Key : Base, ICollectable
+{
+    /// IsCollected property
+    public bool isCollected { get; set; }
+
+    /// Constructor to set properties
+    public Key(string Name = "Key", bool isCollected = false)
+    {
+        name = Name;
+        this.isCollected = isCollected;
+    }
+
+    /// Implementation of Collect method
+    public void Collect()
+    {
+        if (!isCollected)
+        {
+            isCollected = true;
+            Console.WriteLine($"You pick up the {name}.");
+        }
+        else
+        {
+            Console.WriteLine($"You have already picked up the {name}.");
+        }
+    }
+}
+
+/// RoomObjects class to handle actions on room objects
+public class RoomObjects
+{
+    /// Method to iterate over room objects and perform actions
+    public static void IterateAction(List<Base> roomObjects, Type type)
+    {
+        foreach (var obj in roomObjects)
+        {
+            if (typeof(Door).GetInterfaces().Contains(type))
+            {
+                IInteractive? current = obj as IInteractive;
+                current?.Interact();
+            }
+            else if (typeof(Decoration).GetInterfaces().Contains(type))
+            {
+                IBreakable? current = obj as IBreakable;
+                current?.Break();
+            }
+            else if (typeof(Key).GetInterfaces().Contains(type))
+            {
+                ICollectable? current = obj as ICollectable;
+                current?.Collect();
+            }
+        }
+    }
+}
