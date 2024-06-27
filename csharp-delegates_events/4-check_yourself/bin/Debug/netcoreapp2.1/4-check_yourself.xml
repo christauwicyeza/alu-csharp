@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>4-check_yourself</name>
+    </assembly>
+    <members>
+        <member name="T:CurrentHPArgs">
+            <summary>
+            Class representing current health arguments, inheriting from EventArgs.
+            </summary>
+        </member>
+        <member name="P:CurrentHPArgs.CurrentHp">
+            <summary>
+            Gets the current health value.
+            </summary>
+        </member>
+        <member name="M:CurrentHPArgs.#ctor(System.Single)">
+            <summary>
+            Initializes a new instance of the CurrentHPArgs class.
+            </summary>
+            <param name="newHp">The new health value.</param>
+        </member>
+        <member name="T:Modifier">
+            <summary>
+            Enumeration representing different levels of modifiers for calculations.
+            </summary>
+        </member>
+        <member name="F:Modifier.Weak">
+            <summary>
+            Weak modifier.
+            </summary>
+        </member>
+        <member name="F:Modifier.Base">
+            <summary>
+            Base modifier.
+            </summary>
+        </member>
+        <member name="F:Modifier.Strong">
+            <summary>
+            Strong modifier.
+            </summary>
+        </member>
+        <member name="T:CalculateModifier">
+            <summary>
+            Delegate for calculating modified values.
+            </summary>
+            <param name="baseValue">The base value to modify.</param>
+            <param name="modifier">The modifier to apply.</param>
+            <returns>The modified value.</returns>
+        </member>
+        <member name="T:Player">
+            <summary>
+            Class representing a player with health properties and methods.
+            </summary>
+        </member>
+        <member name="E:Player.HPCheck">
+            <summary>
+            Event handler for health check events.
+            </summary>
+        </member>
+        <member name="T:Player.CalculateHealth">
+            <summary>
+            Delegate for calculating health changes.
+            </summary>
+            <param name="amount">The amount of health change.</param>
+        </member>
+        <member name="M:Player.#ctor(System.String,System.Single)">
+            <summary>
+            Initializes a new instance of the Player class.
+            </summary>
+            <param name="name">The name of the player.</param>
+            <param name="maxHp">The maximum health points of the player.</param>
+        </member>
+        <member name="M:Player.TakeDamage(System.Single)">
+            <summary>
+            Method to inflict damage on the player.
+            </summary>
+            <param name="damage">The amount of damage to inflict.</param>
+        </member>
+        <member name="M:Player.HealDamage(System.Single)">
+            <summary>
+            Method to heal the player.
+            </summary>
+            <param name="heal">The amount of healing to apply.</param>
+        </member>
+        <member name="M:Player.ValidateHP(System.Single)">
+            <summary>
+            Validates and sets the new value of hp.
+            </summary>
+            <param name="newHp">The new health value to validate and set.</param>
+        </member>
+        <member name="M:Player.ApplyModifier(System.Single,Modifier)">
+            <summary>
+            Applies a modifier to a base value.
+            </summary>
+            <param name="baseValue">The base value to modify.</param>
+            <param name="modifier">The modifier to apply.</param>
+            <returns>The modified value.</returns>
+        </member>
+        <member name="M:Player.CheckStatus(System.Object,CurrentHPArgs)">
+            <summary>
+            Checks the player's status based on their current health.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The event data.</param>
+        </member>
+        <member name="M:Player.HPValueWarning(System.Object,CurrentHPArgs)">
+            <summary>
+            Provides a warning when the player's health is low or zero.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The event data.</param>
+        </member>
+        <member name="M:Player.OnCheckStatus(CurrentHPArgs)">
+            <summary>
+            Invokes the HPCheck event and checks the player's status.
+            </summary>
+            <param name="e">The event data.</param>
+        </member>
+        <member name="M:Player.PrintHealth">
+            <summary>
+            Prints the current health status of the player.
+            </summary>
+        </member>
+        <member name="T:Program">
+            <summary>
+            Main class to demonstrate the Player class functionality.
+            </summary>
+        </member>
+    </members>
+</doc>
