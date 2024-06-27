@@ -1,137 +1,111 @@
 ﻿using System;
+using System.Collections.Generic;
 
 /// <summary>
 /// Interface for interactive objects.
 /// </summary>
-public interface IInteractive
-{
+public interface IInteractive{
     /// <summary>
-    /// Defines interaction behavior.
+    /// Method for interaction with the object.
     /// </summary>
-    void Interact();
+    public void Interact();
 }
 
 /// <summary>
 /// Interface for breakable objects.
 /// </summary>
-public interface IBreakable
-{
-    /// <summary>
-    /// Gets or sets the durability of the object.
-    /// </summary>
-    int Durability { get; set; }
+public interface IBreakable {
+    // Property to hold the durability value of the object.
+    public int durability { get; set; }
 
     /// <summary>
-    /// Method to define breaking behavior.
+    /// Method to break the object.
     /// </summary>
-    void Break();
+    public void Break();
 }
 
 /// <summary>
-/// Abstract base class representing an entity with a name.
+/// Interface for collectable objects.
 /// </summary>
-public abstract class Base
-{
+public interface ICollectable{
+    // Property to check if the object is collected.
+    public bool isCollected { get; set; }
+    
     /// <summary>
-    /// Gets or sets the name of the entity.
+    /// Method to collect the object.
     /// </summary>
-    public string Name { get; set; }
+    public void Collect();
+}
 
-    /// <summary>
-    /// Initializes a new instance of the Base class with a name.
-    /// </summary>
-    /// <param name="name">The name of the entity. Default is "Decoration".</param>
-    public Base(string name = "Decoration")
-    {
-        Name = name;
+/// <summary>
+/// Door class that implements IInteractive interface.
+/// </summary>
+public class Door : Base, IInteractive{
+    public Door(string value = "Door"){
+        name = value;
     }
 
     /// <summary>
-    /// Returns a string representation of the object.
+    /// Method called when interacting with the door.
     /// </summary>
-    /// <returns>A string in the format: "{Name} is a {Type}".</returns>
-    public override string ToString()
-    {
-        return $"{Name} is a {GetType().Name}";
+    public void Interact(){
+        Console.WriteLine($"You try to open the {name}. It's locked.");
     }
 }
 
 /// <summary>
-/// Decoration class inheriting from Base, IInteractive, and IBreakable.
+/// Decoration class that implements IInteractive and IBreakable interfaces.
 /// </summary>
-public class Decoration : Base, IInteractive, IBreakable
-{
-    /// <summary>
-    /// Gets or sets whether the object is a quest item.
-    /// </summary>
-    public bool IsQuestItem { get; set; }
+public class Decoration : Base, IInteractive, IBreakable{
+    public bool isQuestItem = false;
+    public int durability { get; set; }
 
-    private int durability;
-
-    /// <summary>
-    /// Gets or sets the durability of the decoration.
-    /// </summary>
-    public int Durability
-    {
-        get { return durability; }
-        set
-        {
-            if (value <= 0)
-                throw new ArgumentException("Durability must be greater than 0");
-            durability = value;
+    public Decoration(string CName = "Decoration", int durability = 1, bool isQuestItem = false){
+        this.isQuestItem = isQuestItem;
+        name = CName;
+        if(durability <= 0){
+            throw new Exception("Durability must be greater than 0");
+        } else {
+            this.durability = durability;
         }
     }
 
     /// <summary>
-    /// Constructor for initializing the Decoration class.
+    /// Method called when interacting with the decoration.
     /// </summary>
-    /// <param name="name">The name of the decoration. Default is "Decoration".</param>
-    /// <param name="durability">The durability of the decoration. Default is 1.</param>
-    /// <param name="isQuestItem">Whether the decoration is a quest item. Default is false.</param>
-    public Decoration(string name = "Decoration", int durability = 1, bool isQuestItem = false)
-        : base(name)
-    {
-        Durability = durability;
-        IsQuestItem = isQuestItem;
-    }
-
-    /// <summary>
-    /// Method to interact with the decoration.
-    /// </summary>
-    public void Interact()
-    {
-        if (Durability <= 0)
-        {
-            Console.WriteLine($"The {Name} has been broken.");
-        }
-        else if (IsQuestItem)
-        {
-            Console.WriteLine($"You look at the {Name}. There's a key inside.");
-        }
-        else
-        {
-            Console.WriteLine($"You look at the {Name}. Not much to see here.");
+    public void Interact(){
+        if(durability <= 0){
+            Console.WriteLine($"The {name} has been broken.");
+        } else if(isQuestItem){
+            Console.WriteLine($"You look at the {name}. There's a key inside.");
+        } else {
+            Console.WriteLine($"You look at the {name}. Not much to see here.");
         }
     }
 
     /// <summary>
     /// Method to break the decoration.
     /// </summary>
-    public void Break()
-    {
-        Durability--;
+    public void Break(){
+        this.durability--;
 
-        if (Durability > 0)
-        {
-            Console.WriteLine($"You hit the {Name}. It cracks.");
+        if(durability > 0){
+            Console.WriteLine($"You hit the {name}. It cracks.");
+        } else if(durability == 0){
+            Console.WriteLine($"You smash the {name}. What a mess.");
+        } else {
+            Console.WriteLine($"The {name} is already broken.");
         }
-        else if (Durability == 0)
-        {
-            Console.WriteLine($"You smash the {Name}. What a mess.");
-        }
-        else
-        {
-            Console.WriteLine($"The {Name} is already broken.");
-        }
+    }
+}
+
+/// <summary>
+/// Base class for all objects.
+/// </summary>
+public abstract class Base{
+    public String? name { get; set; }
+
+    public override String ToString(){
+        return $"{name} is a {this.GetType()}";
     }
 }
