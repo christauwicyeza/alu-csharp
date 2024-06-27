@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 
 /// <summary>
 /// Queue of type defined
@@ -116,9 +117,9 @@ public class Queue<T>
     }
 
     /// <summary>
-    /// Combines string or chars together
+    /// Concatenates all string or char values in the queue.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>Concatenated string or null if conditions are not met.</returns>
     public string? Concatenate()
     {
         if (count == 0)
@@ -129,24 +130,19 @@ public class Queue<T>
 
         if (CheckType() != typeof(string) && CheckType() != typeof(char))
         {
-            Console.WriteLine("Concatenate() is for a queue of Strings or Chars");
+            Console.WriteLine("Concatenate() is for a queue of Strings or Chars only.");
             return null;
         }
 
-        string outputValue = "";
-
+        StringBuilder sb = new StringBuilder();
         Node? current = head;
         while (current != null)
         {
-            outputValue += current.Value;
-            if (CheckType() == typeof(string))
-            {
-                outputValue += " ";
-            }
+            sb.Append(current.Value);
             current = current.Next;
         }
 
-        return outputValue;
+        return sb.ToString();
     }
 
     /// <summary>
