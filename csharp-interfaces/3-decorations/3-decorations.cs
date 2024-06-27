@@ -28,6 +28,22 @@ public interface IBreakable
 }
 
 /// <summary>
+/// Interface for collectable objects.
+/// </summary>
+public interface ICollectable
+{
+    /// <summary>
+    /// Gets or sets whether the object is collected.
+    /// </summary>
+    bool IsCollected { get; set; }
+
+    /// <summary>
+    /// Method to define collecting behavior.
+    /// </summary>
+    void Collect();
+}
+
+/// <summary>
 /// Abstract base class representing an entity with a name.
 /// </summary>
 public abstract class Base
@@ -128,21 +144,20 @@ public class Decoration : Base, IInteractive, IBreakable
     }
 }
 
-/// <summary>
-/// Main class to demonstrate the functionality of Decoration.
-/// </summary>
 class Program
 {
     static void Main()
     {
         // Create a Decoration object
-        Decoration decoration = new Decoration("Front Door", 3, true);
+        Decoration teacup = new Decoration("Teacup", 2, false);
 
         // Demonstrate interaction and breaking
-        decoration.Interact();
-        decoration.Break();
-        decoration.Break();
-        decoration.Break();
-        decoration.Break(); // This will show the message for already broken state
+        Console.WriteLine(teacup);
+        teacup.Interact();
+        teacup.Break();
+        teacup.Break();
+        teacup.Break();
+        teacup.Interact();
+        Console.WriteLine($"isQuestItem: {teacup.IsQuestItem}");
     }
 }
