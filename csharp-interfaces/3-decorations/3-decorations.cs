@@ -8,39 +8,47 @@ public interface IInteractive{
     /// <summary>
     /// Method for interaction with the object.
     /// </summary>
-    public void Interact();
+    void Interact();
 }
 
 /// <summary>
 /// Interface for breakable objects.
 /// </summary>
 public interface IBreakable {
-    // Property to hold the durability value of the object.
-    public int durability { get; set; }
+    /// <summary>
+    /// Gets or sets the durability of the breakable object.
+    /// </summary>
+    int durability { get; set; }
 
     /// <summary>
     /// Method to break the object.
     /// </summary>
-    public void Break();
+    void Break();
 }
 
 /// <summary>
 /// Interface for collectable objects.
 /// </summary>
 public interface ICollectable{
-    // Property to check if the object is collected.
-    public bool isCollected { get; set; }
+    /// <summary>
+    /// Gets or sets a value indicating whether the object is collected.
+    /// </summary>
+    bool isCollected { get; set; }
     
     /// <summary>
     /// Method to collect the object.
     /// </summary>
-    public void Collect();
+    void Collect();
 }
 
 /// <summary>
 /// Door class that implements IInteractive interface.
 /// </summary>
 public class Door : Base, IInteractive{
+    /// <summary>
+    /// Constructor for Door class.
+    /// </summary>
+    /// <param name="value">The name of the door.</param>
     public Door(string value = "Door"){
         name = value;
     }
@@ -57,9 +65,22 @@ public class Door : Base, IInteractive{
 /// Decoration class that implements IInteractive and IBreakable interfaces.
 /// </summary>
 public class Decoration : Base, IInteractive, IBreakable{
+    /// <summary>
+    /// Indicates if the decoration is a quest item.
+    /// </summary>
     public bool isQuestItem = false;
+
+    /// <summary>
+    /// Gets or sets the durability of the decoration.
+    /// </summary>
     public int durability { get; set; }
 
+    /// <summary>
+    /// Constructor for Decoration class.
+    /// </summary>
+    /// <param name="CName">The name of the decoration.</param>
+    /// <param name="durability">The durability of the decoration.</param>
+    /// <param name="isQuestItem">Whether the decoration is a quest item.</param>
     public Decoration(string CName = "Decoration", int durability = 1, bool isQuestItem = false){
         this.isQuestItem = isQuestItem;
         name = CName;
@@ -103,9 +124,16 @@ public class Decoration : Base, IInteractive, IBreakable{
 /// Base class for all objects.
 /// </summary>
 public abstract class Base{
-    public String? name { get; set; }
+    /// <summary>
+    /// Gets or sets the name of the object.
+    /// </summary>
+    public string? name { get; set; }
 
-    public override String ToString(){
+    /// <summary>
+    /// Returns a string representation of the object.
+    /// </summary>
+    /// <returns>A string representation of the object.</returns>
+    public override string ToString(){
         return $"{name} is a {this.GetType()}";
     }
 }
