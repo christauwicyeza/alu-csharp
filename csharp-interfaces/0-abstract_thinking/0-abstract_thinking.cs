@@ -28,18 +28,3 @@ public abstract class Base
         return $"{Name} is a {GetType().Name}";
     }
 }
-
-/// <summary>
-/// Example derived class representing a specific type of Base entity.
-/// </summary>
-public class GardenGate : Base
-{
-    /// <summary>
-    /// Constructor for initializing a GardenGate with a name.
-    /// </summary>
-    /// <param name="name">The name of the garden gate.</param>
-    public GardenGate(string name) : base(name)
-    {
-        // Additional initialization specific to GardenGate if needed
-    }
-}
