@@ -1,30 +1,19 @@
 using System;
 
 /// <summary>
-/// Queue of a specified type.
+/// Queue of type defined
 /// </summary>
-/// <typeparam name="T">The type of elements in the queue.</typeparam>
+/// <typeparam name="T"></typeparam>
 public class Queue<T>
 {
     /// <summary>
-    /// Node class for the elements in the queue.
+    /// Node class struct
     /// </summary>
     public class Node
     {
-        /// <summary>
-        /// Value contained in the node.
-        /// </summary>
         public T? Value;
-
-        /// <summary>
-        /// Reference to the next node in the queue.
-        /// </summary>
         public Node? Next;
 
-        /// <summary>
-        /// Constructs a new node with a specified value.
-        /// </summary>
-        /// <param name="value">The value to store in the node.</param>
         public Node(T value)
         {
             Value = value;
@@ -32,24 +21,14 @@ public class Queue<T>
         }
     }
 
-    /// <summary>
-    /// Head of the queue.
-    /// </summary>
+    // First element of queue
     protected Node? head;
-
-    /// <summary>
-    /// Tail of the queue.
-    /// </summary>
+    // Last element of the queue
     protected Node? tail;
-
-    /// <summary>
-    /// Number of elements in the queue.
-    /// </summary>
+    // Number of items in queue
     int count;
 
-    /// <summary>
-    /// Constructs an empty queue.
-    /// </summary>
+    // Constructor assignment
     public Queue()
     {
         head = null;
@@ -58,9 +37,9 @@ public class Queue<T>
     }
 
     /// <summary>
-    /// Adds an element to the end of the queue.
+    /// Adding elements at queue end
     /// </summary>
-    /// <param name="value">The value to enqueue.</param>
+    /// <param name="value"></param>
     public void Enqueue(T value)
     {
         Node newNode = new Node(value);
@@ -79,9 +58,9 @@ public class Queue<T>
     }
 
     /// <summary>
-    /// Removes and returns the element at the beginning of the queue.
+    /// Decrements the queue and returns the type 
     /// </summary>
-    /// <returns>The element removed from the beginning of the queue, or the default value of type T if the queue is empty.</returns>
+    /// <returns></returns>
     public T? Dequeue()
     {
         T? currentValue;
@@ -94,6 +73,7 @@ public class Queue<T>
         else
         {
             count--;
+
             currentValue = head!.Value;
             head = head.Next;
         }
@@ -102,9 +82,9 @@ public class Queue<T>
     }
 
     /// <summary>
-    /// Returns the element at the beginning of the queue without removing it.
+    /// Returns the first element without removing from queue
     /// </summary>
-    /// <returns>The element at the beginning of the queue, or the default value of type T if the queue is empty.</returns>
+    /// <returns></returns>
     public T? Peek()
     {
         if (count == 0)
@@ -117,7 +97,7 @@ public class Queue<T>
     }
 
     /// <summary>
-    /// Prints all elements in the queue.
+    /// Displays all elements in queue
     /// </summary>
     public void Print()
     {
@@ -136,9 +116,9 @@ public class Queue<T>
     }
 
     /// <summary>
-    /// Concatenates all elements in the queue if the queue is of type string or char.
+    /// Combines string or chars together
     /// </summary>
-    /// <returns>A concatenated string of all elements, or null if the queue is empty or not of type string or char.</returns>
+    /// <returns></returns>
     public string? Concatenate()
     {
         if (count == 0)
@@ -149,7 +129,7 @@ public class Queue<T>
 
         if (CheckType() != typeof(string) && CheckType() != typeof(char))
         {
-            Console.WriteLine("Concatenate() is for a queue of Strings or Chars only.");
+            Console.WriteLine("Concatenate() is for a queue of Strings or Chars");
             return null;
         }
 
@@ -170,20 +150,81 @@ public class Queue<T>
     }
 
     /// <summary>
-    /// Returns the type of elements in the queue.
+    /// Returns type of generic
     /// </summary>
-    /// <returns>The type of elements in the queue.</returns>
+    /// <returns></returns>
     public Type CheckType()
     {
         return typeof(T);
     }
 
     /// <summary>
-    /// Returns the number of elements in the queue.
+    /// Returns the number of items
     /// </summary>
-    /// <returns>The number of elements in the queue.</returns>
+    /// <returns></returns>
     public int Count()
     {
         return count;
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        // Example usage of Queue<int>
+        Queue<int> intQueue = new Queue<int>();
+        intQueue.Enqueue(1);
+        intQueue.Enqueue(2);
+        intQueue.Enqueue(3);
+
+        Console.WriteLine("Queue elements:");
+        intQueue.Print();
+
+        int dequeueValue = intQueue.Dequeue() ?? default;
+        Console.WriteLine($"Dequeued value: {dequeueValue}");
+
+        int peekValue = intQueue.Peek() ?? default;
+        Console.WriteLine($"Peeked value: {peekValue}");
+
+        Console.WriteLine($"Queue count: {intQueue.Count()}");
+
+        // Example usage of Queue<string>
+        Queue<string> stringQueue = new Queue<string>();
+        stringQueue.Enqueue("Hello");
+        stringQueue.Enqueue("World");
+
+        Console.WriteLine("\nString Queue elements:");
+        stringQueue.Print();
+
+        string concatenatedString = stringQueue.Concatenate();
+        Console.WriteLine($"Concatenated string: {concatenatedString}");
+
+        Console.WriteLine($"String Queue count: {stringQueue.Count()}");
+
+        // Example usage of Queue<char>
+        Queue<char> charQueue = new Queue<char>();
+        charQueue.Enqueue('A');
+        charQueue.Enqueue('B');
+        charQueue.Enqueue('C');
+
+        Console.WriteLine("\nChar Queue elements:");
+        charQueue.Print();
+
+        string concatenatedChars = charQueue.Concatenate();
+        Console.WriteLine($"Concatenated chars: {concatenatedChars}");
+
+        Console.WriteLine($"Char Queue count: {charQueue.Count()}");
+
+        // Example for error case
+        Queue<double> doubleQueue = new Queue<double>();
+        doubleQueue.Enqueue(1.1);
+        doubleQueue.Enqueue(2.2);
+
+        string concatenatedDouble = doubleQueue.Concatenate();
+        if (concatenatedDouble == null)
+        {
+            Console.WriteLine("\nConcatenation failed due to incorrect type.");
+        }
     }
 }
