@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>5-concatenate</name>
+    </assembly>
+    <members>
+        <member name="T:Queue`1">
+             <summary>
+            public class queue
+             </summary>
+             <typeparam name="T"></typeparam>
+        </member>
+        <member name="T:Queue`1.Node">
+            <summary>
+            class Node
+            </summary>
+        </member>
+        <member name="F:Queue`1.Node.Value">
+            <summary>
+            value of node
+            </summary>
+        </member>
+        <member name="F:Queue`1.Node.Next">
+            <summary>
+            reference to the next node in queue
+            </summary>
+        </member>
+        <member name="M:Queue`1.Node.#ctor(`0)">
+            <summary>
+            initializes values
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="F:Queue`1.head">
+            <summary>
+            head node
+            </summary>
+        </member>
+        <member name="F:Queue`1.tail">
+            <summary>
+            tail node
+            </summary>
+        </member>
+        <member name="M:Queue`1.#ctor">
+            <summary>
+            queue method
+            </summary>
+        </member>
+        <member name="M:Queue`1.Enqueue(`0)">
+            <summary>
+            enqueue method
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:Queue`1.Dequeue">
+            <summary>
+            dequeue method
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Queue`1.Peek">
+            <summary>
+            peek method that returns value of first node  w/o removing node
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Queue`1.Print">
+            <summary>
+            print method prints queue from head
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Queue`1.Concatenate">
+            <summary>
+            concatenate method
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Queue`1.CheckType">
+            <summary>
+            checktype method
+            </summary>
+        </member>
+        <member name="M:Queue`1.Count">
+            <summary>
+            count method
+            </summary>
+        </member>
+    </members>
+</doc>
