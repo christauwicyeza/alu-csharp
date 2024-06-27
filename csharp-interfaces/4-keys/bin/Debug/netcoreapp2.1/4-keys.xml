@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>4-keys</name>
+    </assembly>
+    <members>
+        <member name="T:IInteractive">
+            <summary>
+            Interface for interactions
+            </summary>
+        </member>
+        <member name="T:IBreakable">
+            <summary>
+            Interface for breakables
+            </summary>
+        </member>
+        <member name="T:ICollectable">
+            <summary>
+            Interface for collectable objects
+            </summary>
+        </member>
+        <member name="T:Door">
+            <summary>
+            Door class for controlling a door
+            </summary>
+        </member>
+        <member name="T:Decoration">
+            <summary>
+            Decoration class definition
+            </summary>
+        </member>
+        <member name="T:Key">
+            <summary>
+            Key class for representing a collectable key
+            </summary>
+        </member>
+        <member name="T:Base">
+            <summary>
+            Base class for everything
+            </summary>
+        </member>
+    </members>
+</doc>
