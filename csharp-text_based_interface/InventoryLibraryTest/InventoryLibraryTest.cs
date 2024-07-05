@@ -37,6 +37,33 @@ namespace InventoryLibraryTest
             // Create an instance of Inventory
             Inventory inventory = new Inventory(user.Id, item.Id, 5);
             Console.WriteLine($"Inventory ID: {inventory.Id}, User ID: {inventory.UserId}, Item ID: {inventory.ItemId}, Quantity: {inventory.Quantity}, Date Created: {inventory.DateCreated}, Date Updated: {inventory.DateUpdated}");
+            Console.WriteLine();
+
+            // Create an instance of JSONStorage
+            JSONStorage storage = new JSONStorage();
+
+            // Add objects to storage
+            storage.New(user);
+            storage.New(item);
+            storage.New(inventory);
+
+            // Save objects to JSON file
+            storage.Save();
+
+            // Output objects
+            Console.WriteLine("Stored Objects:");
+            foreach (var obj in storage.All())
+            {
+                Console.WriteLine($"{obj.Key}: {obj.Value.GetType().Name}, ID: {obj.Value.Id}");
+            }
+
+            // Load objects from JSON file
+            JSONStorage newStorage = new JSONStorage();
+            Console.WriteLine("\nLoaded Objects:");
+            foreach (var obj in newStorage.All())
+            {
+                Console.WriteLine($"{obj.Key}: {obj.Value.GetType().Name}, ID: {obj.Value.Id}");
+            }
         }
     }
 }
