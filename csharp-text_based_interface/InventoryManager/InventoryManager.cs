@@ -6,36 +6,78 @@ namespace InventoryManager
 {
     class Program
     {
-        static JSONStorage storage = new JSONStorage();
+        private static JSONStorage storage = new JSONStorage();
 
         static void Main(string[] args)
         {
             storage.Load();
-            Console.WriteLine("Inventory Manager");
-            Console.WriteLine("-------------------------");
             PrintCommands();
 
-            string? command;
             while (true)
             {
-                Console.Write("> ");
-                command = Console.ReadLine()?.Trim().ToLower();
+                Console.Write(">");
+                string input = Console.ReadLine().ToLower();
+                string[] commandParts = input.Split(' ');
 
-                if (command == "exit")
+                if (commandParts.Length == 0)
                 {
-                    storage.Save();
-                    break;
+                    continue;
                 }
 
-                if (command != null)
+                switch (commandParts[0])
                 {
-                    ProcessCommand(command);
+                    case "classnames":
+                        PrintClassNames();
+                        break;
+                    case "all":
+                        if (commandParts.Length == 1)
+                        {
+                            PrintAll();
+                        }
+                        else if (commandParts.Length == 2)
+                        {
+                            PrintAll(commandParts[1]);
+                        }
+                        break;
+                    case "create":
+                        if (commandParts.Length == 2)
+                        {
+                            Create(commandParts[1]);
+                        }
+                        break;
+                    case "show":
+                        if (commandParts.Length == 3)
+                        {
+                            Show(commandParts[1], commandParts[2]);
+                        }
+                        break;
+                    case "update":
+                        if (commandParts.Length == 3)
+                        {
+                            Update(commandParts[1], commandParts[2]);
+                        }
+                        break;
+                    case "delete":
+                        if (commandParts.Length == 3)
+                        {
+                            Delete(commandParts[1], commandParts[2]);
+                        }
+                        break;
+                    case "exit":
+                        storage.Save();
+                        return;
+                    default:
+                        Console.WriteLine("Invalid command.");
+                        PrintCommands();
+                        break;
                 }
             }
         }
 
         static void PrintCommands()
         {
+            Console.WriteLine("Inventory Manager");
+            Console.WriteLine("-------------------------");
             Console.WriteLine("<ClassNames> show all ClassNames of objects");
             Console.WriteLine("<All> show all objects");
             Console.WriteLine("<All [ClassName]> show all objects of a ClassName");
@@ -46,120 +88,56 @@ namespace InventoryManager
             Console.WriteLine("<Exit>");
         }
 
-        static void ProcessCommand(string command)
-        {
-            string[] parts = command.Split(' ', 2);
-            string action = parts[0];
-            string? argument = parts.Length > 1 ? parts[1] : null;
-
-            switch (action)
-            {
-                case "classnames":
-                    PrintClassNames();
-                    break;
-                case "all":
-                    PrintAll(argument);
-                    break;
-                case "create":
-                    if (argument != null) CreateObject(argument);
-                    else Console.WriteLine("Invalid command.");
-                    break;
-                case "show":
-                    if (argument != null) ShowObject(argument);
-                    else Console.WriteLine("Invalid command.");
-                    break;
-                case "update":
-                    if (argument != null) UpdateObject(argument);
-                    else Console.WriteLine("Invalid command.");
-                    break;
-                case "delete":
-                    if (argument != null) DeleteObject(argument);
-                    else Console.WriteLine("Invalid command.");
-                    break;
-                default:
-                    Console.WriteLine("Invalid command.");
-                    break;
-            }
-            PrintCommands();
-        }
-
         static void PrintClassNames()
         {
-            Console.WriteLine("User");
-            Console.WriteLine("Item");
-            Console.WriteLine("Inventory");
+            var classNames = new List<string> { "user", "item", "inventory" };
+            Console.WriteLine(string.Join(", ", classNames));
         }
 
-        static void PrintAll(string? className = null)
+        static void PrintAll(string className = null)
         {
-            foreach (var obj in storage.All())
+            var allObjects = storage.All();
+            foreach (var obj in allObjects)
             {
-                if (className == null || obj.Value.GetType().Name.ToLower() == className.ToLower())
+                if (className == null || obj.Key.StartsWith(className + "."))
                 {
                     Console.WriteLine($"{obj.Key}: {obj.Value}");
                 }
             }
         }
 
-        static void CreateObject(string className)
+        static void Create(string className)
         {
             switch (className.ToLower())
             {
                 case "user":
-                    Console.Write("Enter name: ");
-                    string? userName = Console.ReadLine();
-                    if (!string.IsNullOrEmpty(userName))
-                    {
-                        User newUser = new User(userName);
-                        storage.New(newUser);
-                        Console.WriteLine("User created successfully.");
-                    }
-                    else
-                    {
-                        Console.WriteLine("User creation failed: Name cannot be empty.");
-                    }
+                    Console.Write("Enter user name: ");
+                    string userName = Console.ReadLine();
+                    User user = new User(userName);
+                    storage.New(user);
                     break;
                 case "item":
-                    Console.Write("Enter name: ");
-                    string? itemName = Console.ReadLine();
-                    Console.Write("Enter price: ");
-                    string? priceInput = Console.ReadLine();
-                    if (!string.IsNullOrEmpty(itemName) && float.TryParse(priceInput, out float itemPrice))
-                    {
-                        Item newItem = new Item(itemName, itemPrice);
-                        Console.Write("Enter description: ");
-                        newItem.Description = Console.ReadLine() ?? string.Empty;
-                        Console.Write("Enter tags (comma separated): ");
-                        string? tags = Console.ReadLine();
-                        if (!string.IsNullOrEmpty(tags))
-                        {
-                            newItem.Tags = new List<string>(tags.Split(','));
-                        }
-                        storage.New(newItem);
-                        Console.WriteLine("Item created successfully.");
-                    }
-                    else
-                    {
-                        Console.WriteLine("Item creation failed: Invalid name or price.");
-                    }
+                    Console.Write("Enter item name: ");
+                    string itemName = Console.ReadLine();
+                    Console.Write("Enter item price: ");
+                    float itemPrice = float.Parse(Console.ReadLine());
+                    Item item = new Item(itemName, itemPrice);
+                    Console.Write("Enter item description: ");
+                    item.Description = Console.ReadLine();
+                    Console.Write("Enter item tags (comma separated): ");
+                    string tags = Console.ReadLine();
+                    item.Tags = new List<string>(tags.Split(','));
+                    storage.New(item);
                     break;
                 case "inventory":
                     Console.Write("Enter user ID: ");
-                    string? userId = Console.ReadLine();
+                    string userId = Console.ReadLine();
                     Console.Write("Enter item ID: ");
-                    string? itemId = Console.ReadLine();
+                    string itemId = Console.ReadLine();
                     Console.Write("Enter quantity: ");
-                    string? quantityInput = Console.ReadLine();
-                    if (!string.IsNullOrEmpty(userId) && !string.IsNullOrEmpty(itemId) && int.TryParse(quantityInput, out int quantity))
-                    {
-                        Inventory newInventory = new Inventory(userId, itemId, quantity);
-                        storage.New(newInventory);
-                        Console.WriteLine("Inventory created successfully.");
-                    }
-                    else
-                    {
-                        Console.WriteLine("Inventory creation failed: Invalid user ID, item ID, or quantity.");
-                    }
+                    int quantity = int.Parse(Console.ReadLine());
+                    Inventory inventory = new Inventory(userId, itemId, quantity);
+                    storage.New(inventory);
                     break;
                 default:
                     Console.WriteLine($"{className} is not a valid object type");
@@ -167,92 +145,107 @@ namespace InventoryManager
             }
         }
 
-        static void ShowObject(string argument)
+        static void Show(string className, string id)
         {
-            string[] parts = argument.Split(' ', 2);
-            if (parts.Length < 2)
+            string key = $"{className.ToLower()}.{id}";
+            if (storage.All().TryGetValue(key, out object obj))
             {
-                Console.WriteLine("Invalid command.");
-                return;
-            }
-
-            string className = parts[0];
-            string objectId = parts[1];
-            string key = $"{className}.{objectId}";
-
-            if (storage.All().ContainsKey(key))
-            {
-                Console.WriteLine(storage.All()[key]);
+                Console.WriteLine(obj);
             }
             else
             {
-                Console.WriteLine($"Object {objectId} could not be found");
+                Console.WriteLine($"Object {id} could not be found");
             }
         }
 
-        static void UpdateObject(string argument)
+        static void Update(string className, string id)
         {
-            string[] parts = argument.Split(' ', 2);
-            if (parts.Length < 2)
+            string key = $"{className.ToLower()}.{id}";
+            if (!storage.All().TryGetValue(key, out object obj))
             {
-                Console.WriteLine("Invalid command.");
+                Console.WriteLine($"Object {id} could not be found");
                 return;
             }
 
-            string className = parts[0];
-            string objectId = parts[1];
-            string key = $"{className}.{objectId}";
-
-            if (storage.All().ContainsKey(key))
+            switch (obj)
             {
-                BaseClass obj = storage.All()[key];
-                Console.WriteLine("Enter new values (leave blank to keep current value):");
-                foreach (var property in obj.GetType().GetProperties())
-                {
-                    Console.Write($"{property.Name} ({property.GetValue(obj)}): ");
-                    string? input = Console.ReadLine();
-                    if (!string.IsNullOrEmpty(input))
+                case User user:
+                    Console.Write($"Enter new name (current: {user.Name}): ");
+                    string newName = Console.ReadLine();
+                    if (!string.IsNullOrWhiteSpace(newName))
                     {
-                        if (property.PropertyType == typeof(int) && int.TryParse(input, out int intValue))
-                            property.SetValue(obj, intValue);
-                        else if (property.PropertyType == typeof(float) && float.TryParse(input, out float floatValue))
-                            property.SetValue(obj, floatValue);
-                        else if (property.PropertyType == typeof(string))
-                            property.SetValue(obj, input);
-                        else if (property.PropertyType == typeof(List<string>))
-                            property.SetValue(obj, new List<string>(input.Split(',')));
+                        user.Name = newName;
                     }
-                }
-                obj.UpdateTimestamp();
-                Console.WriteLine("Object updated successfully.");
+                    user.UpdateTimestamp();
+                    break;
+                case Item item:
+                    Console.Write($"Enter new name (current: {item.Name}): ");
+                    string newNameItem = Console.ReadLine();
+                    if (!string.IsNullOrWhiteSpace(newNameItem))
+                    {
+                        item.Name = newNameItem;
+                    }
+                    Console.Write($"Enter new description (current: {item.Description}): ");
+                    string newDescription = Console.ReadLine();
+                    if (!string.IsNullOrWhiteSpace(newDescription))
+                    {
+                        item.Description = newDescription;
+                    }
+                    Console.Write($"Enter new price (current: {item.Price}): ");
+                    string newPriceStr = Console.ReadLine();
+                    if (float.TryParse(newPriceStr, out float newPrice))
+                    {
+                        item.Price = newPrice;
+                    }
+                    Console.Write($"Enter new tags (current: {string.Join(", ", item.Tags)}): ");
+                    string newTags = Console.ReadLine();
+                    if (!string.IsNullOrWhiteSpace(newTags))
+                    {
+                        item.Tags = new List<string>(newTags.Split(','));
+                    }
+                    item.UpdateTimestamp();
+                    break;
+                case Inventory inventory:
+                    Console.Write($"Enter new user ID (current: {inventory.UserId}): ");
+                    string newUserId = Console.ReadLine();
+                    if (!string.IsNullOrWhiteSpace(newUserId))
+                    {
+                        inventory.UserId = newUserId;
+                    }
+                    Console.Write($"Enter new item ID (current: {inventory.ItemId}): ");
+                    string newItemId = Console.ReadLine();
+                    if (!string.IsNullOrWhiteSpace(newItemId))
+                    {
+                        inventory.ItemId = newItemId;
+                    }
+                    Console.Write($"Enter new quantity (current: {inventory.Quantity}): ");
+                    string newQuantityStr = Console.ReadLine();
+                    if (int.TryParse(newQuantityStr, out int newQuantity))
+                    {
+                        inventory.Quantity = newQuantity;
+                    }
+                    inventory.UpdateTimestamp();
+                    break;
+                default:
+                    Console.WriteLine($"{className} is not a valid object type");
+                    return;
             }
-            else
-            {
-                Console.WriteLine($"Object {objectId} could not be found");
-            }
+
+            storage.Save();
+            Console.WriteLine($"Updated {className} {id}");
         }
 
-        static void DeleteObject(string argument)
+        static void Delete(string className, string id)
         {
-            string[] parts = argument.Split(' ', 2);
-            if (parts.Length < 2)
+            string key = $"{className.ToLower()}.{id}";
+            if (storage.All().Remove(key))
             {
-                Console.WriteLine("Invalid command.");
-                return;
-            }
-
-            string className = parts[0];
-            string objectId = parts[1];
-            string key = $"{className}.{objectId}";
-
-            if (storage.All().ContainsKey(key))
-            {
-                storage.All().Remove(key);
-                Console.WriteLine($"Object {objectId} deleted successfully.");
+                Console.WriteLine($"Deleted {className} {id}");
+                storage.Save();
             }
             else
             {
-                Console.WriteLine($"Object {objectId} could not be found");
+                Console.WriteLine($"Object {id} could not be found");
             }
         }
     }
