@@ -1,4 +1,6 @@
-﻿using System;
+#nullable enable
+
+using System;
 
 /// <summary>
 /// currenthpargs class inheriting from eventargs
